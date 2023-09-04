@@ -15,7 +15,12 @@ use App\Http\Controllers\ClothController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('cloths.index');
 });
 
 Route::get('/cloths', [ClothController::class, 'index']);
+Route::get('/cloths/colors', [ClothController::class, 'showColors']);
+Route::get('/cloths/items', [ClothController::class, 'showItems']);
+Route::post('/cloths/items', [ClothController::class, 'store_items']);
+Route::get('/cloths/items/add_items', [ClothController::class, 'add_items']);
+Route::get('/cloths/patterns', [ClothController::class, 'showPatterns']);
