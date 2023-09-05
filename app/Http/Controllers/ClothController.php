@@ -34,8 +34,9 @@ class ClothController extends Controller
     {
         $input = $request['item'];
         $img_url = Cloudinary::upload($request->file('item.item_img')->getRealPath())->getSecurePath();
-        $input += ['item_img' => $img_url];
-        $item->fill($input)->save();
+        $item->fill($input);
+        $item->item_img = $img_url;
+        $item->save();
         return redirect('cloths/items');
     }
     
