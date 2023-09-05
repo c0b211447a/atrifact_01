@@ -17,46 +17,49 @@ class ColorSeeder extends Seeder
     {
         //
         DB::table('colors')->insert([
-                'name' => '〇Blue'
+                'name' => 'Blue'
         ]);
         DB::table('colors')->insert([
-                'name' => '〇Blue-Green'
+                'name' => 'Blue-Green'
         ]);
         DB::table('colors')->insert([
-                'name' => '〇Green'
+                'name' => 'Green'
         ]);
         DB::table('colors')->insert([
-                'name' => '〇Yellow-Green'
+                'name' => 'Yellow-Green'
         ]);
         DB::table('colors')->insert([
-                'name' => '〇Yellow'
+                'name' => 'Yellow'
         ]);
         DB::table('colors')->insert([
-                'name' => '〇Yellow-Orange'
+                'name' => 'Yellow-Orange'
         ]);
         DB::table('colors')->insert([
-                'name' => '〇Orange'
+                'name' => 'Orange'
         ]);
         DB::table('colors')->insert([
-                'name' => '〇Red-Orange'
+                'name' => 'Red-Orange'
         ]);
         DB::table('colors')->insert([
-                'name' => '〇Red'
+                'name' => 'Red'
         ]);
         DB::table('colors')->insert([
-                'name' => '〇Red-Violet'
+                'name' => 'Red-Violet'
         ]);
         DB::table('colors')->insert([
-                'name' => '〇Violet'
+                'name' => 'Violet'
         ]);
         DB::table('colors')->insert([
-                'name' => '〇Blue-Violet'
+                'name' => 'Blue-Violet'
         ]);
         DB::table('colors')->insert([
-                'name' => '〇Black'
+                'name' => 'Black'
         ]);
         DB::table('colors')->insert([
-                'name' => '〇White'
+                'name' => 'Gray'
+        ]);
+        DB::table('colors')->insert([
+                'name' => 'White'
         ]);
     }
 }

@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ClothController;
+use App\Http\Controllers\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,6 +20,7 @@ Route::get('/', function () {
 });
 
 Route::get('/cloths', [ClothController::class, 'index']);
+Route::get('/cloths/categories/{select_category}', [CategoryController::class, 'showCategories']);
 Route::get('/cloths/colors', [ClothController::class, 'showColors']);
 Route::get('/cloths/items', [ClothController::class, 'showItems']);
 Route::post('/cloths/items', [ClothController::class, 'store_items']);

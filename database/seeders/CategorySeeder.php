@@ -17,19 +17,19 @@ class CategorySeeder extends Seeder
     {
         //
         DB::table('categories')->insert([
-                'name' => '〇Accessories'
+                'name' => 'Accessories'
         ]);
          DB::table('categories')->insert([
-                'name' => '〇Tops'
+                'name' => 'Tops'
         ]);
          DB::table('categories')->insert([
-                'name' => '〇Botoms'
+                'name' => 'Botoms'
         ]);
          DB::table('categories')->insert([
-                'name' => '〇Shoes'
+                'name' => 'Shoes'
         ]);
          DB::table('categories')->insert([
-                'name' => '〇Bags/others'
+                'name' => 'Bags/others'
         ]);
         
     }
