@@ -64,7 +64,6 @@ class ClothController extends Controller
             }
         }
         
-        return view('cloths.items_edit')->with(['item' => $item_id, 'categories' => $category->get(), 'selected_category' => $selected_category, 'colors' => $color->get(), 'selected_color' => $selected_color]);
     }
     
     //アイテムの編集を実行する
