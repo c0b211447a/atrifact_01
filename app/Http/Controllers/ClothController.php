@@ -57,7 +57,7 @@ class ClothController extends Controller
             }
         }
         
-        //今選択されているカラーを探すための処理
+        //今選択されているカラーを探すための処理.
         $colors = $color->get();
         foreach ($colors as $color_candidate)
         {
