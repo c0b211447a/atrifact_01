@@ -21,8 +21,25 @@
                 <h2>ALL</h2>
                 @foreach($items as $item)
                     <img src="{{ $item->item_img }}" alt="画像が読み込めません。"/>
+                    <form action="/cloths/items/{{ $item->id }}" id="form_{{ $item->id }}" method="post">
+                        @csrf
+                        @method('DELETE')
+                        <button type="button" onclick="deleteItem({{ $item->id }})">delete</button>
+                    </form>
                 @endforeach
             </div>
         </div>
+        <script>
+            function deleteItem(id) {
+                'use strict'
+                
+                //${id}はjavascriptで式を文字列として扱うように指示している
+                //また<script>と記述した範囲内でのコメントアウトはダブルスラッシュそれ以外は<!-- -->になる
+                //なぜ削除機能のもみ厳格機能での実装なのか
+                if (confirm('Really delete this item??')) {
+                    document.getElementById(`form_${id}`).submit();
+                }
+            }
+        </script>
     </body>
 </html>

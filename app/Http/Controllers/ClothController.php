@@ -24,19 +24,26 @@ class ClothController extends Controller
     }
     
     //アイテム登録画面に移動する
-    public function add_items(Category $category, Color $color)
+    public function add_item(Category $category, Color $color)
     {
         return view('cloths.items_add')->with(['categories' => $category->get(), 'colors' => $color->get()]);
     }
     
     //アイテムを保存する
-    public function store_items(Request $request, Item $item)
+    public function store_item(Request $request, Item $item)
     {
         $input = $request['item'];
         $img_url = Cloudinary::upload($request->file('item.item_img')->getRealPath())->getSecurePath();
         $item->fill($input);
         $item->item_img = $img_url;
         $item->save();
+        return redirect('cloths/items');
+    }
+    
+    //アイテムを削除する
+    public function delete_item(Item $item_id)
+    {
+        $item_id->delete();
         return redirect('cloths/items');
     }
     

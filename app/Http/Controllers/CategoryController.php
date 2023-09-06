@@ -8,7 +8,7 @@ use App\Models\Item;
 
 class CategoryController extends Controller
 {
-    //
+    //５個のブレードファイルを一つのブレードファイルにすることができた
     /*public function showCategories(Category $select_category)
     {
         if ($select_category->id === 1)
@@ -36,6 +36,8 @@ class CategoryController extends Controller
     }
     */
     
+    //暗黙の結合によって今選択されているカテゴリーは自動的に$select_categoryに入っている
+    //またリレーションを使うことでそのカテゴリーに属するアイテムをitemsに入れることができている
     public function showCategories(Category $select_category)
     {
         return view('categories.category_element')->with(['select_category' => $select_category, 'items' => $select_category->getItems()]);
