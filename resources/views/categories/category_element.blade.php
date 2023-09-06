@@ -23,8 +23,22 @@
                 <h2>{{ $select_category->name }}</h2>
                 @foreach($items as $item)
                     <img src="{{ $item->item_img }}" alt="画像が読み込めません。"/>
+                    <form action="/cloths/items/{{ $item->id }}" id="form_{{ $item->id }}" method="post">
+                        @csrf
+                        @method('DELETE')
+                        <button type="button" onclick="deleteItem({{ $item->id }})">delete</button>
+                    </form>
                 @endforeach
             </div>
         </div>
+        <script>
+            function deleteItem(id) {
+                'use strict'
+                
+                if (confirm('Really delete this item??')) {
+                    document.getElementById(`form_${id}`).submit();
+                }
+            }
+        </script>
     </body>
 </html>
