@@ -50,6 +50,9 @@ class ClothController extends Controller
             if ($item_id->category_id === $category_candidate->id)
             {
                 $selected_category = $category_candidate;
+                //選択されているカテゴリを除いた全データの取得
+                $except_id = $selected_category->id;
+                $categories = $category->where('id', '!=', $except_id)->get();
                 break;
             }
         }
@@ -60,9 +63,14 @@ class ClothController extends Controller
             if ($item_id->color_id === $color_candidate->id)
             {
                 $selected_color = $color_candidate;
+                //選択されているカテゴリを除いた全データの取得
+                $except_id = $selected_color->id;
+                $colors = $color->where('id', '!=', $except_id)->get();
                 break;
             }
         }
+        
+        return view('cloths.items_edit')->with(['item' => $item_id, 'categories' => $categories, 'selected_category' => $selected_category, 'colors' => $colors, 'selected_color' => $selected_color]);
         
     }
     
