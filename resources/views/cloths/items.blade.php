@@ -21,6 +21,7 @@
                 <h2>ALL</h2>
                 @foreach($items as $item)
                     <img src="{{ $item->item_img }}" alt="画像が読み込めません。"/>
+                    <div class="edit_item"><a href="/cloths/items/{{ $item->id }}/edit">edit</a></div>
                     <form action="/cloths/items/{{ $item->id }}" id="form_{{ $item->id }}" method="post">
                         @csrf
                         @method('DELETE')

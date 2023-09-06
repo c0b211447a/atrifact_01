@@ -26,4 +26,6 @@ Route::get('/cloths/items', [ClothController::class, 'showItems']);
 Route::post('/cloths/items', [ClothController::class, 'store_item']);
 Route::get('/cloths/items/add_items', [ClothController::class, 'add_item']);
 Route::delete('/cloths/items/{item_id}', [ClothController::class, 'delete_item']);
+Route::put('/cloths/items/{item_id}', [ClothController::class, 'update_item']);
+Route::get('/cloths/items/{item_id}/edit', [ClothController::class, 'edit_item']);
 Route::get('/cloths/patterns', [ClothController::class, 'showPatterns']);

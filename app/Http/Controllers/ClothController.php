@@ -40,6 +40,28 @@ class ClothController extends Controller
         return redirect('cloths/items');
     }
     
+    //アイテムを編集画面を表示する
+    public function edit_item(Item $item_id, Category $category, Color $color)
+    {
+        return view('cloths.items_edit')->with(['item' => $item_id, 'categories' => $category->get(), 'colors' => $color->get()]);
+    }
+    
+    //アイテムの編集を実行する
+    public function update_item(Request $request, Item $item_id)
+    {
+        $input = $request['item'];
+        $item_id->fill($input);
+        //もし画像の変更があった場合は変更し、それ以外はカテゴリやカラーの情報のみを保存する
+        //item.imgでブレード側のname属性値item[item_img]を表している
+        if(!($request->file('item.item_img')===null))
+        {
+            $img_url = Cloudinary::upload($request->file('item.item_img')->getRealPath())->getSecurePath();
+            $item_id->item_img = $img_url;
+        }
+        $item_id->save();
+        return redirect('cloths/items');
+    }
+    
     //アイテムを削除する
     public function delete_item(Item $item_id)
     {
