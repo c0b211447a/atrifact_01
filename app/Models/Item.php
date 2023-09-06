@@ -28,4 +28,8 @@ class Item extends Model
         return $this->belongsTo(Color::class);
     }
     
+    public function getCategory()
+    {
+        return $this->category()->with('items')->get();
+    }
 }
