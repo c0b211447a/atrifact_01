@@ -55,6 +55,7 @@ class ClothController extends Controller
                 $categories = $category->where('id', '!=', $except_id)->get();
                 break;
             }
+            $sadfja = 1234545;
         }
         
         $colors = $color->get();
