@@ -43,7 +43,28 @@ class ClothController extends Controller
     //アイテムを編集画面を表示する
     public function edit_item(Item $item_id, Category $category, Color $color)
     {
-        return view('cloths.items_edit')->with(['item' => $item_id, 'categories' => $category->get(), 'colors' => $color->get()]);
+        //今選択されているカテゴリを探すための処理
+        $categories = $category->get();
+        foreach ($categories as $category_candidate)
+        {
+            if ($item_id->category_id === $category_candidate->id)
+            {
+                $selected_category = $category_candidate;
+                break;
+            }
+        }
+        
+        $colors = $color->get();
+        foreach ($colors as $color_candidate)
+        {
+            if ($item_id->color_id === $color_candidate->id)
+            {
+                $selected_color = $color_candidate;
+                break;
+            }
+        }
+        
+        return view('cloths.items_edit')->with(['item' => $item_id, 'categories' => $category->get(), 'selected_category' => $selected_category, 'colors' => $color->get(), 'selected_color' => $selected_color]);
     }
     
     //アイテムの編集を実行する
