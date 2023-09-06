@@ -16,13 +16,14 @@
                     <h3><a href="/cloths/categories/2">〇Tops</a></h3>
                     <h3><a href="/cloths/categories/3">〇Botoms</a></h3>
                     <h3><a href="/cloths/categories/4">〇Shoes</a></h3>
-                    <h3><a href="/cloths/categories/5">〇Bags/ohters</a></h3>
+                    <h3><a href="/cloths/categories/5">〇Bags/others</a></h3>
                 <h3><a href="/cloths/items">〇ALL</a></h3>
             </div>
             <div class='item_img'>
                 <h2>{{ $select_category->name }}</h2>
                 @foreach($items as $item)
                     <img src="{{ $item->item_img }}" alt="画像が読み込めません。"/>
+                    <div class="edit_item"><a href="/cloths/items/{{ $item->id }}/edit">edit</a></div>
                     <form action="/cloths/items/{{ $item->id }}" id="form_{{ $item->id }}" method="post">
                         @csrf
                         @method('DELETE')
