@@ -43,7 +43,7 @@ class ClothController extends Controller
     //アイテムを編集画面を表示する
     public function edit_item(Item $item_id, Category $category, Color $color)
     {
-        //今選択されているカテゴリを探すための処理
+        //今選択されているカテゴリを探すための処理.
         $categories = $category->get();
         foreach ($categories as $category_candidate)
         {
