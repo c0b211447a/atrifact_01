@@ -19,6 +19,7 @@
             <div class="category">
                 <h2>Category</h2>
                 <select name="item[category_id]">
+                    <option value="{{ $selected_category->id }}" selected>{{ $selected_category->name }}</option>
                     @foreach($categories as $category)
                         <option value="{{ $category->id }}">{{ $category->name }}</option>
                     @endforeach
@@ -27,6 +28,7 @@
             <div class="color">
                 <h2>Color</h2>
                 <select name="item[color_id]">
+                    <option value="{{ $selected_color->id }}" selected>{{ $selected_color->name }}</option>
                     @foreach($colors as $color)
                         <option value="{{ $color->id }}">{{ $color->name }}</option>
                     @endforeach
