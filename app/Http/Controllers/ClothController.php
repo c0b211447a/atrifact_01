@@ -67,6 +67,7 @@ class ClothController extends Controller
                 //選択されているカテゴリを除いた全データの取得
                 //test
                 //commit_test
+                //test_3
                 $except_id = $selected_color->id;
                 $colors = $color->where('id', '!=', $except_id)->get();
                 break;
