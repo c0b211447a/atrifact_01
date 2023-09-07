@@ -20,16 +20,32 @@ class Item extends Model
     
     public function category()
     {
+        //一つのアイテムは一つのカテゴリをもつ
         return $this->belongsTo(Category::class);
     }
     
     public function color()
     {
+        //一つのアイテムは一つのカラーをもつ
         return $this->belongsTo(Color::class);
     }
     
+    public function coordinations()
+    {
+        //一つのアイテムはたくさんのコーディネートの一部になっている
+        return $this->belongsToMany(Coordinates::class);
+    }
+    
+    //カテゴリに登録されているアイテムをとってくる
     public function getCategory()
     {
         return $this->category()->with('items')->get();
     }
+    
+    //カラーに登録されているアイテムをとってくる
+    public function getColor()
+    {
+        return $this->color()->with('items')->get();
+    }
 }
+
