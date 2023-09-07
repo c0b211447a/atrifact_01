@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ClothController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ColorController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,6 +23,7 @@ Route::get('/', function () {
 Route::get('/cloths', [ClothController::class, 'index']);
 Route::get('/cloths/categories/{select_category}', [CategoryController::class, 'showCategories']);
 Route::get('/cloths/colors', [ClothController::class, 'showColors']);
+Route::get('/cloths/colors/{select_color}', [ColorController::class, 'showColors']);
 Route::get('/cloths/items', [ClothController::class, 'showItems']);
 Route::post('/cloths/items', [ClothController::class, 'store_item']);
 Route::get('/cloths/items/add_items', [ClothController::class, 'add_item']);

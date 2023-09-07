@@ -8,12 +8,12 @@
     </head>
     <body>
         <h1>Colorset</h1>
-        <a href="items/add_items">ADD+</a>
+        <a href="/cloths/items/add_items">ADD+</a>
         <div class='cloths'>
             <div class='categories'>
                 <h2>CATEGORY</h2>
                 @foreach($categories as $category)
-                    <h3><a href="/cloths/categories/{{ $category->id }}">〇{{ $category->name }}</a></h3>
+                    <h3><a href="/cloths/categories/{{ $category->id }}">{{ $category->name }}</a></h3>
                 @endforeach
                 <h3><a href="/cloths/items">〇ALL</a></h3>
             </div>
@@ -28,7 +28,7 @@
                 @endforeach
             </div>
             <div class='item_img'>
-                <h2>ALL</h2>
+                <h2>{{ $select_color->name }}</h2>
                 @foreach($items as $item)
                     <img src="{{ $item->item_img }}" alt="画像が読み込めません。"/>
                     <div class="edit_item"><a href="/cloths/items/{{ $item->id }}/edit">edit</a></div>
@@ -44,9 +44,6 @@
             function deleteItem(id) {
                 'use strict'
                 
-                //${id}はjavascriptで式を文字列として扱うように指示している
-                //また<script>と記述した範囲内でのコメントアウトはダブルスラッシュそれ以外は<!-- -->になる
-                //なぜ削除機能のみ厳格機能での実装なのか
                 if (confirm('Really delete this item??')) {
                     document.getElementById(`form_${id}`).submit();
                 }
