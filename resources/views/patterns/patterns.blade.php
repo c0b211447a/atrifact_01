@@ -13,5 +13,8 @@
             <div class='cloth'>
             </div>
         </div>
+        <div class='add'>
+            <a href="patterns/add_patterns">ADD+</a>
+        </div>
     </body>
 </html>

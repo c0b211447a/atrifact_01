@@ -109,7 +109,13 @@ class ClothController extends Controller
     //作成したパターンの一覧を表示する
     public function showPatterns()
     {
-        return view('cloths.patterns');
+        return view('patterns.patterns');
+    }
+    
+    //パターンを作成するための画面を表示する
+    public function add_pattern()
+    {
+        return view('patterns.patterns_add');
     }
     
 }
