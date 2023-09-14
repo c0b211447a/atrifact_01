@@ -31,3 +31,4 @@ Route::delete('/cloths/items/{item_id}', [ClothController::class, 'delete_item']
 Route::put('/cloths/items/{item_id}', [ClothController::class, 'update_item']);
 Route::get('/cloths/items/{item_id}/edit', [ClothController::class, 'edit_item']);
 Route::get('/cloths/patterns', [ClothController::class, 'showPatterns']);
+Route::get('/cloths/patterns/add_patterns', [ClothController::class, 'add_pattern']);
