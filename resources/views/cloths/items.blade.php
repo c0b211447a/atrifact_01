@@ -6,6 +6,7 @@
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
         <link href="/css/header.css" rel="stylesheet">
+        <link href="/css/img_size_adjust.css" rel="stylesheet">
     </head>
     <header class="header_inline_block">
         <h1>Colorset</h1>
@@ -17,38 +18,46 @@
             </ul>
         </nav>
     </header>
-    <body>
-        <a href="items/add_items">ADD+</a>
-        <div class='cloths'>
-            <div class='categories'>
-                <h2>CATEGORY</h2>
-                @foreach($categories as $category)
-                    <h3><a href="/cloths/categories/{{ $category->id }}">〇{{ $category->name }}</a></h3>
-                @endforeach
-                <h3><a href="/cloths/items">〇ALL</a></h3>
-            </div>
-            <div class='colors'>
-                <h2>COLOR</h2>
-                @foreach($colors as $color)
-                    <h3><a href="/cloths/colors/{{ $color->id }}">
-                        <ul>
-                            <li>{{ $color->name }}</li>
-                        </ul>
-                    </a></h3>
-                @endforeach
-            </div>
+    <body class="body-layout">
+           <div class='categories'>
+            <h2>CATEGORY</h2>
+            @foreach($categories as $category)
+                <h3><a href="/cloths/categories/{{ $category->id }}">〇{{ $category->name }}</a></h3>
+            @endforeach
+            <h3><a href="/cloths/items">〇ALL</a></h3>
+        </div>
+        <div class='colors'>
+            <h2>COLOR</h2>
+            @foreach($colors as $color)
+                <h3><a href="/cloths/colors/{{ $color->id }}">
+                    <ul>
+                        <li>{{ $color->name }}</li>
+                    </ul>
+                </a></h3>
+            @endforeach
+        </div>
+        <div class="items">
+            <h2>ALL</h2>
+            <a href="items/add_items">ADD+</a>
             <div class='item_img'>
-                <h2>ALL</h2>
                 @foreach($items as $item)
-                    <img src="{{ $item->item_img }}" alt="画像が読み込めません。"/>
-                    <div class="edit_item"><a href="/cloths/items/{{ $item->id }}/edit">edit</a></div>
-                    <form action="/cloths/items/{{ $item->id }}" id="form_{{ $item->id }}" method="post">
-                        @csrf
-                        @method('DELETE')
-                        <button type="button" onclick="deleteItem({{ $item->id }})">delete</button>
-                    </form>
+                    <div class="item_layout">
+                        <div class="image">
+                            <img src="{{ $item->item_img }}" alt="画像が読み込めません。"/ width="200" height="200">
+                        </div>
+                        <div class='edit_layout'>
+                            <div class="edit_item"><a href="/cloths/items/{{ $item->id }}/edit">edit</a></div>
+                        </div>
+                        <div class="delete_layout">
+                            <form action="/cloths/items/{{ $item->id }}" id="form_{{ $item->id }}" method="post">
+                                @csrf
+                                @method('DELETE')
+                                <button type="button" onclick="deleteItem({{ $item->id }})">delete</button>
+                            </form>    
+                        </div>
+                    </div>
                 @endforeach
-            </div>
+            </div>    
         </div>
         <script>
             function deleteItem(id) {
