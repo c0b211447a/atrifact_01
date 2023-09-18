@@ -1,0 +1,42 @@
+body {
+    display: grid;
+    grid-template-rows: 100px 458px 373px;
+    grid-template-columns: 576px 768px 576px;
+    grid-template-areas:
+        "header header header"
+        "colors add_patterns select_items"
+        "select_colors add_patterns categories";
+}
+
+.header_inline_block {
+    grid-area: header;
+}
+
+.colors {
+    grid-area: colors;
+    background-color: Azure;
+}
+
+.colors svg a:hover {
+    opacity: 0.5;
+}
+
+.select_colors {
+    grid-area: select_colors;
+    background-color: Lavender;
+}
+
+.add_patterns {
+    grid-area: add_patterns;
+    background-color: white;
+}
+
+.select_items {
+    grid-area: select_items;
+    background-color: Azure;
+}
+
+.categories {
+    grid-area: categories;
+    background-color: Lavender;
+}
