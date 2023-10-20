@@ -1,0 +1,106 @@
+.item_img {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+body {
+    display: grid;
+    grid-template-rows: 100px 831px;
+    grid-template-columns: 576px 768px 576px;
+    grid-template-areas:
+        "areaHeader areaHeader areaHeader"
+        "areaCategories areaItems areaColors";
+}
+
+.header_inline_block {
+    grid-area: areaHeader;
+}
+
+.categories {
+    background-color: lightgrey;
+    grid-area: areaCategories;
+    border-right: 1px solid;
+    border-top: 1px solid;
+}
+
+.items {
+    background-color: lightgrey;
+    grid-area: areaItems;
+    border-top: 1px solid;
+    overflow: auto;
+}
+
+.items_header {
+    display: flex;
+    align-items: center;
+}
+
+.select_category_item {
+    display: inline-block;
+    margin: 10px;
+}
+
+.add_item_button {
+    display: inline-block;
+    margin-left: auto;
+}
+
+.add_item_button a {
+    text-decoration: none;
+    color: black;
+    margin-right: 10px;
+}
+
+.colors {
+    background-color: lightgrey;
+    grid-area: areaColors;
+    border-left: 1px solid;
+    border-top: 1px solid;
+}
+
+.colors h2 {
+    margin-left: 10px;
+}
+
+.colors svg {
+    margin-left: 138px;
+}
+
+.colors svg a:hover {
+    opacity: 0.5;
+}
+
+.item_layout {
+    display: grid;
+    grid-template-rows: 300px 10px;
+    grid-template-columns: 100px 100px;
+    grid-template-areas:
+        "areaA areaA"
+        "areaB areaC";
+    margin: 30px 0 0 40px;
+}
+
+.imgae {
+    grid-area: areaA;
+}
+
+/*ウィンドウサイズが変わっても画像の比率を維持する*/
+.image img {
+    width: 200px;
+    height: 300px;
+    object-fit: cover;
+    border: 1px solid;
+}
+
+.edit_layout {
+    grid-area: areaB;
+}
+
+.delete_layout {
+    grid-area: areaC;
+}
+
+.delete_layout button {
+    float: right;
+    margin-top: 3px;
+}
