@@ -113,9 +113,57 @@ class ClothController extends Controller
     }
     
     //パターンを作成するための画面を表示する
-    public function add_pattern()
+    public function add_pattern(Item $item, Category $category, Color $color)
     {
-        return view('patterns.patterns_add');
+        $items = $item->get();
+        
+        //colorカテゴリに属するアイテム
+        $blue = $item->where('color_id', '1')->get();
+        $blue_green = $item->where('color_id', '2')->get();
+        $green = $item->where('color_id', '3')->get();
+        $yellow_green = $item->where('color_id', '4')->get();
+        $yellow = $item->where('color_id', '5')->get();
+        $yellow_orange = $item->where('color_id', '6')->get();
+        $orange = $item->where('color_id', '7')->get();
+        $red_orange = $item->where('color_id', '8')->get();
+        $red = $item->where('color_id', '9')->get();
+        $red_violet = $item->where('color_id', '10')->get();
+        $violet = $item->where('color_id', '11')->get();
+        $blue_violet = $item->where('color_id', '12')->get();
+        $black = $item->where('color_id', '13')->get();
+        $gray = $item->where('color_id', '14')->get();
+        $white = $item->where('color_id', '15')->get();
+        
+        //categoryカテゴリに属するアイテム
+        $accessories = $item->where('category_id', '1')->get();
+        $tops = $item->where('category_id', '2')->get();
+        $botoms = $item->where('category_id', '3')->get();
+        $shoes = $item->where('category_id', '4')->get();
+        $bags_others = $item->where('category_id', '5')->get();
+        
+        return view('patterns.patterns_add')->with(['items' => $items, 
+                                                    'categories' => $category->get(),
+                                                    'blue' => $blue,
+                                                    'blue_green' => $blue_green,
+                                                    'green' => $green,
+                                                    'yellow_green' => $yellow_green,
+                                                    'yellow' => $yellow,
+                                                    'yellow_orange' => $yellow_orange,
+                                                    'orange' => $orange,
+                                                    'red_orange' => $red_orange,
+                                                    'red' => $red,
+                                                    'red_violet' => $red_violet,
+                                                    'violet' => $violet,
+                                                    'blue_violet' => $blue_violet,
+                                                    'black' => $black,
+                                                    'gray' => $gray,
+                                                    'white' => $white,
+                                                    'accessories' => $accessories,
+                                                    'tops' => $tops,
+                                                    'botoms' => $botoms,
+                                                    'shoes' => $shoes,
+                                                    'bags_others' => $bags_others
+                                                    ]);
     }
     
 }

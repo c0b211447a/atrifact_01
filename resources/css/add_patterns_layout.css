@@ -1,0 +1,71 @@
+body {
+    display: grid;
+    grid-template-rows: 100px 458px 373px;
+    grid-template-columns: 576px 768px 576px;
+    grid-template-areas:
+        "header header header"
+        "colors add_patterns select_items"
+        "select_colors add_patterns categories";
+}
+
+.header_inline_block {
+    grid-area: header;
+}
+
+.colors {
+    grid-area: colors;
+    background-color: lightgrey;
+    border-top: 1px solid;
+    border-right: 1px solid;
+    border-bottom: 1px solid;
+}
+
+.colors svg a:hover {
+    opacity: 0.5;
+}
+
+.select_colors {
+    grid-area: select_colors;
+    background-color: lightgrey;
+    border-top: 1px solid;
+    border-right: 1px solid;
+    border-bottom: 1px solid;
+    
+}
+
+.add_patterns {
+    grid-area: add_patterns;
+    background-color: lightgrey;
+    border: 1px solid;
+}
+
+.select_items {
+    grid-area: select_items;
+    background-color: lightgrey;
+    border-top: 1px solid;
+    border-left: 1px solid;
+    border-bottom: 1px solid;
+    overflow: auto;
+}
+
+.item_img {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.item_img img {
+    display: inline-block;
+    width: 100px;
+    height: 200px;
+    margin: 0 0 20px 70px;
+    object-fit: cover;
+    border: 1px;
+}
+
+.categories {
+    grid-area: categories;
+    background-color: lightgrey;
+    border-top: 1px solid;
+    border-left: 1px solid;
+    border-bottom: 1px solid;
+}

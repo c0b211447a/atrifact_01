@@ -14,7 +14,52 @@ body {
 
 .colors {
     grid-area: colors;
-    background-color: Azure;
+    position: relative;
+    background-color: lightgrey;
+    border-top: 1px solid;
+    border-bottom: 1px solid;
+}
+
+.colors svg {
+    position: absolute;
+    margin-left: 25px;
+}
+
+#white {
+    position: absolute;
+    width: 200px;
+    height: 50px;
+    background-color: white;
+    transform: translate(350px, 40px);
+    opacity: 0.5;
+}
+
+#gray{
+    position: absolute;
+    width: 200px;
+    height: 50px;
+    background-color: gray;
+    transform: translate(350px, 120px);
+}
+
+#black {
+    position: absolute;
+    width: 200px;
+    height: 50px;
+    background-color: black;
+    transform: translate(350px, 200px);
+}
+
+#white:hover{
+    opacity: 0.5;
+}
+
+#gray:hover{
+    opacity: 0.5;
+}
+
+#black:hover{
+    opacity: 0.5;
 }
 
 .colors svg a:hover {
@@ -23,20 +68,186 @@ body {
 
 .select_colors {
     grid-area: select_colors;
-    background-color: Lavender;
+    position: relative;
+    background-color: lightgrey;
+    
+}
+
+#name_tops {
+    width: 90px;
+    height: 20px;
+    position: absolute;
+    transform: translate(10px, 20px);
+}
+
+#name_botoms {
+    width: 90px;
+    height: 20px;
+    position: absolute;
+    transform: translate(10px, 90px);
+}
+
+#name_shoes {
+    width: 90px;
+    height: 20px;
+    position: absolute;
+    transform: translate(10px, 160px);
+}
+
+.select_category_class {
+    position: absolute;
+    width: 370px;
+    height: 50px;
+}
+
+.select_color_frame {
+    position: absolute;
+    width: 300px;
+    height: 50px;
+}
+
+.select_color_name {
+    position: absolute;
+    width: 100px;
+    height: 50px;
+    left: 10px;
+}
+
+.select_color_background {
+    position: absolute;
+    width: 60px;
+    height: 30px;
+    top: 10px;
+    left: 220px;
+}
+
+.select_color_delete_button {
+    position: absolute;
+    width: 70px;
+    height: 50px;
+    left: 300px;
+    cursor: pointer;
+}
+
+.select_color_delete_button:hover {
+    opacity: 0.5;
+}
+
+#tops {
+    transform: translate(110px, 20px);
+}
+
+#botoms {
+    transform: translate(110px, 90px);
+}
+
+#shoes {
+    transform: translate(110px, 160px);
 }
 
 .add_patterns {
     grid-area: add_patterns;
+    background-color: lightgrey;
+    border-top: 1px solid;
+    border-right: 1px solid;
+    border-left: 1px solid;
+    overflow: hidden;
+    position: relative;
+}
+
+#mode_change_button {
+    position: absolute;
+    border: 1px solid;
+    width: 130px;
+    height: 50px;
     background-color: white;
+    transform: translate(10px, 10px);
+    
+}
+
+#all_clear_button {
+    position: absolute;
+    border: 1px solid;
+    width: 130px;
+    height: 50px;
+    background-color: white;
+    transform: translate(10px, 771px);
+}
+
+#save_button {
+    position: absolute;
+    border: 1px solid;
+    width: 130px;
+    height: 50px;
+    background-color: white;
+    transform: translate(628px ,10px);
+}
+
+.add_pattern_area_button_frame {
+    z-index: 3;
+    cursor: pointer;
+}
+
+.add_pattern_area_button_frame:hover {
+    color: gray;
+    opacity: 0.5;
+}
+
+/*コーディネート作成領域のボタンレイアウト*/
+.add_pattern_area_button_content {
+    display: block;
+    text-align: center;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+#coordinates_canvas {
+    position: relative;
+    width: 768px;
+    height: 831px;
+    z-index: 1;
+}
+
+#coordinates_canvas_to_img {
+    position: absolute;
+    width: 768px;
+    height: 831px;
+    transform: translate(0px, 0px);
+    z-index: 1;
 }
 
 .select_items {
     grid-area: select_items;
-    background-color: Azure;
+    background-color: lightgrey;
+    border-top: 1px solid;
+    border-bottom: 1px solid;
+    overflow: auto;
+}
+
+.item_img {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.item_img img {
+    display: inline-block;
+    width: 100px;
+    height: 200px;
+    margin: 0 0 20px 70px;
+    object-fit: cover;
+    border: 1px;
 }
 
 .categories {
     grid-area: categories;
-    background-color: Lavender;
+    background-color: lightgrey;
+}
+
+.categories h3 a:hover{
+    opacity: 0.5;
+    
+}
+
+.item_categories {
+    cursor: pointer;
 }
