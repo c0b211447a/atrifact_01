@@ -108,7 +108,7 @@
             <div class="add_pattern_area_button_frame" id="save_button" onclick="save_coordinates()">
                 <p class="add_pattern_area_button_content">Save</p>
             </div>
-            <canvas id="coordinates_canvas_to_img" width="768" height="831"></canvas>
+            <a id="getImage" href="" download="coordinates.png"></a>
             <div id="coordinates_canvas"></div>
         </div>
         <div class="select_items">
@@ -164,6 +164,8 @@
         </script>
         <!-- js -->
         <script src="https://cdn.jsdelivr.net/npm/interactjs/dist/interact.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html-to-image/1.11.11/html-to-image.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
         <script type="text/javascript" rel="script" src="{{asset('js/change_item_category.js')}}" charset="UTF-8"></script>
         <script type="text/javascript" rel="script" src="{{asset('js/create_coordinates.js')}}" charset="UTF-8"></script>
     </body>

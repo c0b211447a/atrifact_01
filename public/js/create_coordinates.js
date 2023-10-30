@@ -12,9 +12,13 @@ let tops_count=0;
 let botoms_count=0;
 let shoes_count=0;
 let others_count=0;
+//othersアイテムに区別をつけるための工夫
+let save_others_count=1;
 
 //1の時createモード、2の時clearモード
 let mode = 1;
+//サーバーサイドに送るためのデータを入れるための連想配列
+let data_pack = {};
 
 //コーディネート作成エリアにアイテムをドラッグしたときのエフェクトを設定する
 let add_area = document.getElementById('add_patterns');
@@ -112,6 +116,7 @@ coordinates_canvas.addEventListener('drop', function(e){
         image.style.userSelect = 'none';
         image.style.boxSizing = 'border-box';
         coordinates_canvas.appendChild(image);
+        
         
         //既に領域内に表示済みの画像が複製されないようにするための工夫
         itemPath = null;
@@ -344,41 +349,105 @@ function delete_item(categoryId, t){
 }
 
 function save_coordinates(){
-    let canvas;
-    let context;
     let target_item_parent_node = document.getElementById("coordinates_canvas");
     let target_item_children = target_item_parent_node.childNodes;
     let target_item_child;
     let target_item_img;
     let target_item_img_src;
+    let target_item_id;
+    let target_item_category_id;
+    let target_item_color_id;
     let target_item_x;
     let target_item_y;
     let target_item_width;
     let target_item_height;
+    let sumbnail_data;
+    let save_item_info;
+    let save_item_id_list;
+    
+    getDisplayImage();
+    
+    function getDisplayImage(){
+            //html2canvas実行
+            /*global html2canvas */
+            html2canvas(document.getElementById("coordinates_canvas"),{
+                width: 768,
+                height: 831,
+                proxy: true,
+                useCORS: true,
+            }).then(function(canvas){
+                downloadImage(canvas.toDataURL());
+            });
+            
+    
+        function downloadImage (data) {
+            var fname ="coordinates.png";
+            var encdata= atob(data.replace(/^.*,/, ''));
+            var outdata = new Uint8Array(encdata.length);
+            for (var i = 0; i < encdata.length; i++) {
+                outdata[i] = encdata.charCodeAt(i);
+            }
+            var blob = new Blob([outdata], ["image/png"]);
+            
+            sumbnail_data = data;
+            data_pack["coordinations_img"] = sumbnail_data;
+            
+            /*
+            canvas2htmlのデバッグ用
+            document.getElementById("getImage").href=data;            //base64そのまま設定
+            document.getElementById("getImage").download=fname;        //ダウンロードファイル名設定
+            document.getElementById("getImage").click();             //自動クリック
+            */            
+        }
+    
+    }
     
     for (let i=0; i<target_item_children.length; i++){
-        canvas = document.getElementById("coordinates_canvas_to_img");
-        context = canvas.getContext("2d");
         target_item_child = target_item_children[i];
-        target_item_img = new Image();
-        target_item_img_src = target_item_child.src;
-        target_item_img.src = target_item_img_src;
+        target_item_id = target_item_child.id;
         target_item_x = target_item_child.getAttribute('x');
         target_item_y = target_item_child.getAttribute('y');
         target_item_width = target_item_child.style.width;
         target_item_height = target_item_child.style.height;
-        target_item_img.onload = function(){
-            console.log("aaa");
-            context.drawImage(target_item_img, Number(target_item_x), Number(target_item_y), Number(target_item_width), Number(target_item_height));
-            context.save();
-            var png = canvas.toDataURL();
-            console.log(png)
+        save_item_info = {
+            "item_id":target_item_id,
+            "size_width":target_item_width,
+            "size_height":target_item_height,
+            "locate_x":target_item_x,
+            "locate_y":target_item_y,
+        }
+        
+        //tops,botoms,shoesのときは色カテゴリidを設定
+        if (target_item_child.dataset.category == 2 ||
+            target_item_child.dataset.category == 3 ||
+            target_item_child.dataset.category == 4 )
+        {
+            target_item_color_id = target_item_child.dataset.color;
+            save_item_info["color_id"] = target_item_color_id;
+        }
+        
+        
+        if (target_item_child.dataset.category == 1 || target_item_child.dataset.category == 5){
+            //others_itemの判別がつかなくならないようにする
+            if (save_others_count == 1){
+                data_pack["ohters1"] = save_item_info;
+                save_others_count += 1;
+            } else if (save_others_count == 2){
+                data_pack["others2"] = save_item_info;
+            }
+        } else if (target_item_child.dataset.category == 2){
+            data_pack["tops"] = save_item_info;
+        } else if (target_item_child.dataset.category == 3){
+            data_pack["botoms"] = save_item_info;
+        } else if (target_item_child.dataset.category == 4){
+            data_pack["shoes"] = save_item_info;
         }
         
     }
     
-    canvas = document.getElementById("coordinates_canvas_to_img");
-    canvas.style.zIndex = 2;
+    
+    console.log(data_pack);
+
 }
 
 function mode_change(){

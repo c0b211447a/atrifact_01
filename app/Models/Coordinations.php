@@ -11,6 +11,6 @@ class Coordinations extends Model
     
     public function items(){
         //1つのコーディネートはたくさんのアイテムを含んでいる
-        return $this->belongsToMany(Item::class);
+        return $this->belongsToMany(Item::class)->withTimestamps();
     }
 }
