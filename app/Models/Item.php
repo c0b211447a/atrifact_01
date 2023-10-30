@@ -33,7 +33,7 @@ class Item extends Model
     public function coordinations()
     {
         //一つのアイテムはたくさんのコーディネートの一部になっている
-        return $this->belongsToMany(Coordinates::class);
+        return $this->belongsToMany(Coordinations::class)->withTimestamps();
     }
     
     //カテゴリに登録されているアイテムをとってくる
