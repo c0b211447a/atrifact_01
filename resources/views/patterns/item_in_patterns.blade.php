@@ -28,6 +28,12 @@
                 </div>    
             </div>
             <div class='patterns'>
+                <div class="BackMenuButton">
+                    <div class="hover_behavior" id="backmenubuttoncontainer">
+                        ←Back<br>
+                    </div>
+                    <a id="backmenulink" href="/cloths/items" style="display: none;"></a>
+                </div>
                 <div class='patterns_photo'>
                     @foreach($coordinations as $coordination)
                         <div class='pattern'>
@@ -90,5 +96,11 @@
                 </div>
             </div>
         </div>
+        <script>
+            document.getElementById("backmenubuttoncontainer").addEventListener("click", function(){
+                document.getElementById("backmenulink").click();
+                return;
+            });
+        </script>
     </body>
 </html>

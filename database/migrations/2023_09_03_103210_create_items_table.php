@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('category_id')->nullable();
             $table->foreignId('color_id')->nullable();
-            $table->foreignId('user_id')->nullable();
+            $table->foreignId('user_id')->nullable()->constrained()->onDelete('cascade');
             $table->string('item_img');
             $table->timestamps();
             $table->softDeletes();

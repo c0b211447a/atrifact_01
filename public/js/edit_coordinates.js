@@ -30,6 +30,35 @@ add_area.addEventListener('dragover', function(e){
     }
 });
 
+
+let count_area;
+let area_has_item;
+let area_has_item_num;
+//ページ読み込み時コーディネートに使われているアイテムの数をカウント
+window.onload = countItems();
+
+function countItems(){
+    count_area = document.getElementById("coordinates_canvas");
+    area_has_item = count_area.children;
+    area_has_item_num = area_has_item.length;
+    
+    for (let i=0; i<area_has_item_num; i++){
+        if (area_has_item[i].dataset.category==1){
+            others_count += 1;
+        } else if (area_has_item[i].dataset.category==2){
+            tops_count += 1;
+        } else if (area_has_item[i].dataset.category==3){
+            botoms_count += 1;
+        } else if (area_has_item[i].dataset.category==4){
+            shoes_count += 1;
+        } else if (area_has_item[i].dataset.category==5){
+            others_count += 1;
+        }
+        
+        item_count += 1;
+    }
+    // console.log(has_tops);
+}
 //ドラッグアンドドロップしようとしているアイテムの
 //画像URL,id,color_id,category_idを取得
 function getItemInfo(t){
@@ -220,7 +249,6 @@ coordinates_canvas.addEventListener('drop', function(e){
         new_parent_element.appendChild(div_color_name);
         new_parent_element.appendChild(div_color_delete_button);
         parent_element.appendChild(new_parent_element);
-        
     }
 });
 
@@ -351,7 +379,7 @@ function delete_item(categoryId, t){
 
 function save_coordinates(){
     let target_item_parent_node = document.getElementById("coordinates_canvas");
-    let target_item_children = target_item_parent_node.childNodes;
+    let target_item_children = target_item_parent_node.children;
     let target_item_child;
     let target_item_img;
     let target_item_img_src;
@@ -365,7 +393,8 @@ function save_coordinates(){
     let sumbnail_data;
     let save_item_info;
     let save_item_id_list;
-    
+    let coordination_id;
+    let exist_category_list = [];
     
     for (let i=0; i<target_item_children.length; i++){
         target_item_child = target_item_children[i];
@@ -411,6 +440,40 @@ function save_coordinates(){
             data_pack["shoes"] = save_item_info;
         }
         
+        exist_category_list.push(Number(target_item_child.dataset.category));
+        
+    }
+    
+    //編集前と編集後でアイテムが減った場合はそのアイテムの情報をnullで初期化
+    for (let i=1; i<6; i++){
+        if (exist_category_list.includes(i)){
+            continue;
+        }
+        
+        save_item_info = {
+            "item_id":null,
+            "size_width":null,
+            "size_height":null,
+            "locate_x":null,
+            "locate_y":null,
+        }
+        
+        if (i==1){
+            data_pack["others1"] = save_item_info;
+            data_pack["others1"]["color_id"] = null;
+        } else if (i==2){
+            data_pack["tops"] = save_item_info;
+            data_pack["tops"]["color_id"] = null;
+        } else if (i==3){
+            data_pack["botoms"] = save_item_info;
+            data_pack["botoms"]["color_id"] = null;
+        } else if (i==4){
+            data_pack["shoes"] = save_item_info;
+            data_pack["shoes"]["color_id"] = null;
+        } else if (i==5){
+            data_pack["others2"] = save_item_info;
+            data_pack["others2"]["color_id"] = null;
+        } 
     }
     
     sumbnail_data = getDisplayImage();
@@ -440,9 +503,15 @@ function save_coordinates(){
             sumbnail_data = data;
             data_pack["coordinations_img"] = sumbnail_data;
             
+            let url = new URL(window.location.href);
+            let params = url.searchParams;
+            
+            coordination_id = params.get('id');
+            data_pack["id"] = coordination_id;
+            
             /* global fetch */
-            fetch("add_patterns/store",{
-                method: "POST",
+            fetch("../update_patterns/",{
+                method: "PUT",
                 headers: {'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content,
                     "Content-Type": "application/json"
                 }, 
@@ -450,8 +519,7 @@ function save_coordinates(){
             })
             .then(response => response.text())
             .then(res => {
-                console.log(res);
-                window.location.href = "../patterns";
+                window.location.href = "../";
             })
             .catch(error => {
                 console.log(error);
