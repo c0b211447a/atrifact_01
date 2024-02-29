@@ -6,6 +6,7 @@ body {
         "header header header"
         "colors add_patterns select_items"
         "select_colors add_patterns categories";
+    overflow: hidden;
 }
 
 .header_inline_block {
@@ -31,7 +32,6 @@ body {
     height: 50px;
     background-color: white;
     transform: translate(350px, 40px);
-    opacity: 0.5;
 }
 
 #gray{
@@ -171,7 +171,7 @@ body {
     width: 130px;
     height: 50px;
     background-color: white;
-    transform: translate(10px, 771px);
+    transform: translate(10px, 756px);
 }
 
 #save_button {

@@ -1,0 +1,183 @@
+html {
+    height: 100%;
+    width: 100%;
+}
+
+body {
+    display: grid;
+    grid-template-rows: 100px 831px;
+    grid-template-columns: 100%;
+    grid-template-areas:
+        "areaHeader areaHeader"
+        "body body";
+    overflow: hidden;
+    background-color: lightgrey;
+}
+
+form {
+    grid-area: body;
+    display: grid;
+    grid-template-rows: 4.5fr 5.5fr;
+    grid-template-columns: 4.5fr 5.5fr;
+    grid-template-areas:
+        "areaAddPic areaAddCategory"
+        "areaAddPic areaAddColor";
+}
+
+body h2{
+    margin-left: 10px;
+    margin-top: 30px;
+}
+
+.hover_behavior:hover {
+    cursor: pointer;
+    opacity: 0.5;
+}
+
+.header_inline_block {
+    grid-area: areaHeader;
+}
+
+.add_item_image {
+    grid-area: areaAddPic;
+    position: relative;
+}
+
+#item_img {
+    display: none;
+}
+
+#item_img_add_area {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 30px;
+    font-weight: bold;
+    position: absolute;
+    transform: translate(80px, 0px);
+    width: 700px;
+    height: 700px;
+    border: 1px solid;
+    background-color: white;
+    
+}
+
+#select_img {
+    width: 500px;
+    height: 600px;
+}
+
+#show_item_img {
+    width: 500px;
+    height: 600px;
+    
+}
+
+.add_item_category_and_save {
+    grid-area: areaAddCategory;
+}
+
+#category_select {
+    margin-left: 20px;
+    position: absolute;
+    transform: translate(0px, 25px);
+    width: 600px;
+    height: 200px;
+    font-size: 50px;
+    font-weight: bold;
+    text-align-last: center;
+    
+}
+
+#save_button {
+    display: flex;
+    position: absolute;
+    transform: translate(640px, 25px);
+    width: 350px;
+    height: 200px;
+    justify-content: center;
+    align-items: center;
+    font-size: 50px;
+    font-weight: bold;
+    background-color: white;
+    border: 1px solid;
+}
+
+.add_item_color {
+    grid-area: areaAddColor;
+    position: relative;
+}
+
+#color_select {
+    position: absolute;
+    transform: translate(620px, 40px);
+    display: none;
+}
+
+.add_item_color svg{
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    transform: translate(20px, 15px);
+}
+
+.add_item_color svg a:hover{
+    cursor: pointer;
+    opacity: 0.5;
+}
+
+#white {
+    position: absolute;
+    width: 200px;
+    height: 50px;
+    background-color: white;
+    transform: translate(340px, 60px);
+}
+
+#gray{
+    position: absolute;
+    width: 200px;
+    height: 50px;
+    background-color: gray;
+    transform: translate(340px, 140px);
+}
+
+#black {
+    position: absolute;
+    width: 200px;
+    height: 50px;
+    background-color: black;
+    transform: translate(340px, 220px);
+}
+
+#choicecolor {
+    display: inline-block;
+    font-weight: bold;
+    font-size: 30px;
+    position: absolute;
+    transform: translate(590px, 50px);
+}
+
+#choicecolorname {
+    display:inline-block;
+    font-weight: bold;
+    font-size: 30px;
+    position: absolute;
+    transform: translate(590px, 150px);
+}
+
+#choicecolorarea {
+    position: absolute;
+    transform: translate(590px, 200px);
+    width: 400px;
+    height: 100px;
+    background-color: transparent;
+    border: 1px solid;
+}
+
+#store {
+    display: none;
+}
+
+

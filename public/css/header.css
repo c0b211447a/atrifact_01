@@ -10,12 +10,18 @@
 .header_inline_block h1 {
     display: inline-block;
     margin-right: auto;
+    margin-left: 10px;
 }
 
 .header_inline_block nav ul li {
     text-decoration: none;
     display: inline-block;
     list-style: none;
+}
+
+.header_inline_block nav ul li:hover{
+    cursor: pointer;
+    opacity: 0.5;
 }
 
 .header_inline_block a {

@@ -5,12 +5,19 @@
 
 body {
     display: grid;
-    grid-template-rows: 100px 831px;
+    grid-template-rows: 100px 819px;
     grid-template-columns: 576px 768px 576px;
     grid-template-areas:
         "areaHeader areaHeader areaHeader"
         "areaCategories areaItems areaColors";
+    overflow: hidden;
 }
+
+.hover_behavior:hover {
+    cursor: pointer;
+    opacity: 0.5;
+}
+
 
 .header_inline_block {
     grid-area: areaHeader;
@@ -21,6 +28,21 @@ body {
     grid-area: areaCategories;
     border-right: 1px solid;
     border-top: 1px solid;
+}
+
+.categories h2 {
+    margin-left: 10px;
+}
+
+.categories h3 a {
+    text-decoration: none;
+    color: black;
+    margin-left: 10px
+}
+
+.categories h3 a:hover {
+    cursor: pointer;
+    opacity: 0.5;
 }
 
 .items {
@@ -51,11 +73,16 @@ body {
     margin-right: 10px;
 }
 
+.add_item_button:hover {
+    cursor: pointer;
+    opacity: 0.5;
+}
 .colors {
     background-color: lightgrey;
     grid-area: areaColors;
     border-left: 1px solid;
     border-top: 1px solid;
+    position: relative;
 }
 
 .colors h2 {
@@ -63,44 +90,99 @@ body {
 }
 
 .colors svg {
-    margin-left: 138px;
+    margin-left: 20px;
 }
 
 .colors svg a:hover {
     opacity: 0.5;
 }
 
+#white {
+    position: absolute;
+    width: 200px;
+    height: 50px;
+    background-color: white;
+    transform: translate(350px, -260px);
+}
+
+#gray{
+    position: absolute;
+    width: 200px;
+    height: 50px;
+    background-color: gray;
+    transform: translate(350px, -180px);
+}
+
+#black {
+    position: absolute;
+    width: 200px;
+    height: 50px;
+    background-color: black;
+    transform: translate(350px, -100px);
+}
+
 .item_layout {
     display: grid;
-    grid-template-rows: 300px 10px;
-    grid-template-columns: 100px 100px;
+    grid-template-rows: 300px 50px;
+    grid-template-columns: 148px 26px 26px;
     grid-template-areas:
-        "areaA areaA"
-        "areaB areaC";
-    margin: 30px 0 0 40px;
+        "areaImg areaImg areaImg"
+        "areaSpace areaEdit areaDelete";
+    margin: 20px 0 0 40px;
 }
 
 .imgae {
-    grid-area: areaA;
+    grid-area: areaImg;
 }
 
 /*ウィンドウサイズが変わっても画像の比率を維持する*/
 .image img {
     width: 200px;
     height: 300px;
-    object-fit: cover;
     border: 1px solid;
 }
 
 .edit_layout {
-    grid-area: areaB;
+    grid-area: areaEdit;
+}
+
+.edit_layout button {
+    margin-top: 3px;
+    padding: 0 0 0 0;
+    border: none;
+    background-color: transparent;
+}
+
+.edit_layout button:hover {
+    cursor: pointer;
+    opacity: 0.5;
+}
+
+.edit_patterns_button_img {
+    grid-area: areaEdit;
+    width: 26px;
+    height: 40px;
 }
 
 .delete_layout {
-    grid-area: areaC;
+    grid-area: areaDelete;
 }
 
 .delete_layout button {
-    float: right;
     margin-top: 3px;
+    padding: 0 0 0 0;
+    border: none;
+    background-color: transparent;
 }
+
+.delete_layout button:hover {
+    cursor: pointer;
+    opacity: 0.5;
+}
+
+.delete_patterns_button_img {
+    grid-area: areaDelete;
+    width: 26px;
+    height: 40px;
+}
+

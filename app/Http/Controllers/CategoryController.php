@@ -40,6 +40,9 @@ class CategoryController extends Controller
     //またリレーションを使うことでそのカテゴリーに属するアイテムをitemsに入れることができている
     public function showCategories(Category $select_category)
     {
-        return view('categories.category_element')->with(['select_category' => $select_category, 'items' => $select_category->getItems()]);
+        $categories = Category::get();
+        return view('categories.category_element')->with(['select_category' => $select_category, 
+                                                          'items' => $select_category->getItems(),
+                                                          'categories' => $categories]);
     }
 }

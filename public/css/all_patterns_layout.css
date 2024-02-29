@@ -1,0 +1,211 @@
+body {
+    display: grid;
+    grid-template-rows: 100px 819px;
+    grid-template-columns: 1920px;
+    grid-template-areas:
+        "areaHeader areaHeader areaHeader"
+        "areaPatterns areaPatterns areaPatterns";
+    overflow: hidden;
+    
+}
+
+.body {
+    background-color: lightgrey;
+    grid-area: areaPatterns;
+    position: relative;
+    display:grid;
+    grid-template-rows: 80px 739px;
+    grid-template-columns: 1920px;
+    grid-template-areas:
+        "areaPatternsHead"
+        "areaPatternsImg";
+    overflow-y: auto;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+}
+
+.hover_behavior:hover {
+    cursor: pointer;
+    opacity: 0.5;
+}
+
+.patterns_and_add {
+    display: flex;
+    grid-area: areaPatternsHead;
+}
+
+.patterns_and_add h2 {
+    display: inline-block;
+    margin-left: 5px;
+}
+
+.patterns_and_add .add {
+    display: inline-block;
+    margin-left: auto;
+    margin-right: 20px;
+    margin-top: 5px;
+}
+
+.patterns_and_add .add a {
+    text-decoration: none;
+    color: black;
+}
+
+.add:hover {
+    cursor: pointer;
+    opacity: 0.5;
+}
+
+.patterns {
+    display: grid;
+    grid-area: areaPatternsImg;
+    grid-template-rows: 739px;
+    grid-template-columns: 1fr 8fr 1fr;
+    grid-template-areas: "areaBackMenuButton areaPatternsPhoto areaSpace2";
+}
+
+.BackMenuButton {
+    grid-area: areaBackMenuButton;
+    position: relative;
+}
+
+#backmenubuttoncontainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 140px;
+    height: 100px;
+    position: absolute;
+    border: 1px solid;
+    background-color: black;
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+    transform: translate(26px, 0px);
+}
+
+.patterns_photo {
+    display: flex;
+    grid-area: areaPatternsPhoto;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    /*padding: 0% 5% 0% 10%;*/
+}
+
+.pattern {
+    display: grid;
+    grid-template-rows: 0.315fr 0.495fr 0.09fr 0.3fr 0.2fr;
+    grid-template-columns: 1.2fr 5.2fr 1.2fr 1.2fr 1.2fr;
+    grid-template-areas: 
+        "areaSpace areaImg areaImg areaImg areaTopsColor"
+        "areaSpace areaImg areaImg areaImg areaBotomsColor"
+        "areaSpace areaImg areaImg areaImg areaShoesColor"
+        "areaSpace areaImg areaImg areaImg areaNoIconSpace"
+        "areaSpace areaNoImgSpace areaEditPatterns areaDeletePatterns areaNoIconSpace";
+        
+    width: calc((100% / 6 - 0.5%) - 10px);
+    height: 350px;
+    margin: 0px 0px 10px 10px;
+}
+
+.pattern:nth-child(6n+1) {
+    margin-left: 2em;
+}
+
+.tops_item_color {
+    grid-area: areaTopsColor;
+    z-index: 2;
+    border: 1px solid;
+    border-bottom: none;
+    border-left: none;
+}
+
+.botoms_item_color {
+    grid-area: areaBotomsColor;
+    z-index: 2;
+    border: 1px solid;
+    border-bottom: none;
+    border-left: none;
+}
+
+.shoes_item_color {
+    grid-area: areaShoesColor;
+    z-index: 2;
+    border: 1px solid;
+    border-left: none;
+}
+
+.patterns_img {
+    display: block;
+    grid-area: areaImg;
+    width: 180px;
+    height: 300px;
+    margin: auto;
+    border: 1px solid;
+}
+
+.edit_patterns_button_frame {
+    grid-area: areaEditPatterns;
+    position: relative;
+    width: 26px;
+    height: 40px;
+}
+
+.edit_patterns_button_frame button {
+    width: 26px;
+    height: 40px;
+    margin-top: 3px;
+    margin-left: 1px;
+    opacity: 1;
+    z-index: 2;
+    display: block;
+    position: absolute;
+    grid-area: areaEditPatterns;
+    border: none;
+    padding: 0px 0px;
+    background-color: transparent;
+}
+
+.edit_patterns_button_frame button:hover{
+    cursor: pointer;
+    opacity: 0.5;
+}
+
+.edit_patterns_button_img {
+    grid-area: areaEditPatterns;
+    width: 26px;
+    height: 40px;
+}
+
+.delete_patterns_button_frame {
+    grid-area: areaDeletePatterns;
+    position: relative;
+    width: 26px;
+    height: 40px;
+}
+
+.delete_patterns_button_frame button {
+    width: 26px;
+    height: 40px;
+    margin-top: 3px;
+    margin-left: 1px;
+    opacity: 1;
+    z-index: 2;
+    display: block;
+    position: absolute;
+    grid-area: areaDeletePatterns;
+    border: none;
+    padding: 0px 0px;
+    background-color: transparent;
+}
+
+.delete_patterns_button_frame button:hover{
+    cursor: pointer;
+    opacity: 0.5;
+}
+
+.delete_patterns_button_img {
+    grid-area: areaDeletePatterns;
+    width: 26px;
+    height: 40px;
+}
