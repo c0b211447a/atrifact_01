@@ -30,6 +30,11 @@ class Item extends Model
         return $this->belongsTo(Color::class);
     }
     
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+    
     public function coordinations()
     {
         //一つのアイテムはたくさんのコーディネートの一部になっている
