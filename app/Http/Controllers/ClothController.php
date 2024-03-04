@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Cloth;
 use App\Models\Item;
 use App\Models\Category;
@@ -21,7 +22,7 @@ class ClothController extends Controller
     //アイテム一覧を表示する
     public function showItems(Item $item, Category $category, Color $color)
     {
-        return view('cloths.items')->with(['items' => $item->get(), 'categories' => $category->get(), 'colors' => $color->get()]);
+        return view('cloths.items')->with(['items' => Auth::user()->items, 'categories' => $category->get(), 'colors' => $color->get()]);
     }
     
     //アイテム登録画面に移動する
@@ -38,6 +39,7 @@ class ClothController extends Controller
         // dd($request);
         $item->fill($input);
         $item->item_img = $img_url;
+        $item->user_id = Auth::id();
         $item->save();
         return redirect('cloths/items');
     }

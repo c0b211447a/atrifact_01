@@ -39,7 +39,7 @@
         <h1>Colorset</h1>
         <nav>
             <ul>
-                <li><h1><a href="/cloths/colors">COLOR</a></h1></li>
+                <li><h1><a href="{{ route('profile.edit') }}">PROFILE</a></h1></li>
                 <li><h1><a href="/cloths/items">ITEMS</a></h1></li>
                 <li><h1><a href="/cloths/patterns">PATTERNS</a></h1></li>
             </ul>

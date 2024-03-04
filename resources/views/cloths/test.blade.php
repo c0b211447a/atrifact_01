@@ -1,51 +1,40 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <title>Colorset</title>
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
-        <link href="/css/header.css" rel="stylesheet">
-        <link href="/css/add_items_layout.css" rel="stylesheet">
-    </head>
-    <header class="header_inline_block">
-        <h1>Colorset</h1>
-        <nav>
-            <ul>
-                <li><h1><a href="/cloths/colors">COLOR</a></h1></li>
-                <li><h1><a href="/cloths/items">ITEMS</a></h1></li>
-                <li><h1><a href="/cloths/patterns">PATTERNS</a></h1></li>
-            </ul>
-        </nav>
-    </header>
-    <body>
-        <form action="/cloths/items/{{ $item->id }}" method="POST" enctype="multipart/form-data">
-            @csrf
-            @method('PUT')
-            <div class="add_item_image">
-                <h2>Image</h2>
-                <img id="select_img" src="{{ $item->item_img }}" alt="画像が読み込めません。"/>
-                <input type="file" name="item[item_img]">
-            </div>
-            <div class="add_item_category_and_save">
-                <h2>Category</h2>
-                <select name="item[category_id]">
-                    <option value="{{ $selected_category->id }}" selected>{{ $selected_category->name }}</option>
-                    @foreach($categories as $category)
-                        <option value="{{ $category->id }}">{{ $category->name }}</option>
-                    @endforeach
-                </select>
-            </div>
-            <div class="add_item_color">
-                <h2>Color</h2>
-                <select name="item[color_id]">
-                    <option value="{{ $selected_color->id }}" selected>{{ $selected_color->name }}</option>
-                    @foreach($colors as $color)
-                        <option value="{{ $color->id }}">{{ $color->name }}</option>
-                    @endforeach
-                </select>
-            </div>
-            <input id="save_button" class="add_item_category_and_save" type="submit" value="save"/>
-        </form>
-    </body>
-</html>
+<?php
+
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ClothController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ColorController;
+use App\Http\Controllers\PatternsController;
+
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register web routes for your application. These
+| routes are loaded by the RouteServiceProvider within a group which
+| contains the "web" middleware group. Now create something great!
+|
+*/
+
+Route::get('/', function () {
+    return view('cloths.index');
+});
+
+Route::get('/cloths', [ClothController::class, 'index']);
+Route::get('/cloths/categories/{select_category}', [CategoryController::class, 'showCategories'])->name('showCategories');
+Route::get('/cloths/colors', [ClothController::class, 'showColors'])->name('showColors');
+Route::get('/cloths/colors/{select_color}', [ColorController::class, 'showColors'])->name('showSelectColors');
+Route::get('/cloths/items', [ClothController::class, 'showItems'])->name('showItems');
+Route::post('/cloths/items', [ClothController::class, 'store_item'])->name('store_item');
+Route::get('/cloths/items/add_items', [ClothController::class, 'add_item'])->name('add_item');
+Route::delete('/cloths/items/{item_id}', [ClothController::class, 'delete_item'])->name('delete_item');
+Route::post('/cloths/items/{item_id}', [ClothController::class, 'update_item'])->name('update_item');
+Route::get('/cloths/items/{item_id}/edit', [ClothController::class, 'edit_item'])->name('edit_item');
+Route::get('/cloths/patterns', [PatternsController::class, 'showPatterns'])->name('showPatterns');
+Route::get('/cloths/patterns/item/{item_id}', [PatternsController::class, 'showItemInPatterns'])->name('showItemInPatterns');
+Route::delete('/cloths/patterns/delete_patterns/{patterns_id}', [PatternsController::class, 'delete_patterns'])->name('delete_patterns');
+Route::get('/cloths/patterns/edit_patterns/{patterns_id}', [PatternsController::class, 'edit_patterns'])->name('edit_patterns');
+Route::put('/cloths/patterns/update_patterns', [PatternsController::class, 'update_patterns'])->name('update_patterns');
+Route::get('/cloths/patterns/add_patterns', [PatternsController::class, 'add_pattern'])->name('add_pattern');
+Route::post('/cloths/patterns/add_patterns/store', [PatternsController::class, 'store_pattern'])->name('store_pattern');

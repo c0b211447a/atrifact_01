@@ -46,4 +46,8 @@ class Coordinations extends Model
         //1つのコーディネートはたくさんのアイテムを含んでいる
         return $this->belongsToMany(Item::class, 'coordination_item', 'coordination_id', 'item_id');
     }
+    
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
 }

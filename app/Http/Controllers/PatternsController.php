@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Cloth;
 use App\Models\Item;
 use App\Models\Category;
@@ -17,7 +18,7 @@ class PatternsController extends Controller
     //作成したパターンの一覧を表示する
     public function showPatterns(Coordinations $coordinations)
     {   
-        return view('patterns.patterns')->with(['coordinations' => $coordinations->get()]);
+        return view('patterns.patterns')->with(['coordinations' => Auth::user()->coordinations]);
     }
     
     //選択したアイテムが含まれているパターンの一覧を表示する
@@ -27,8 +28,6 @@ class PatternsController extends Controller
     }
     
     public function delete_patterns(Coordinations $patterns_id){
-        // $patterns_id->items()->detach($patterns_id->id);
-        // DB::table('coordination_item')->where('coordination_id', $patterns_id->id)->delete();
         $patterns_id->delete();
 
         return redirect('/cloths/patterns');
@@ -36,31 +35,67 @@ class PatternsController extends Controller
     
     public function edit_patterns(Coordinations $patterns_id, Item $item, Category $category, Color $color){
         
-        $items = $item->get();
+        $items = Auth::user()->items;
         
         //colorカテゴリに属するアイテム
-        $blue = $item->where('color_id', '1')->get();
-        $blue_green = $item->where('color_id', '2')->get();
-        $green = $item->where('color_id', '3')->get();
-        $yellow_green = $item->where('color_id', '4')->get();
-        $yellow = $item->where('color_id', '5')->get();
-        $yellow_orange = $item->where('color_id', '6')->get();
-        $orange = $item->where('color_id', '7')->get();
-        $red_orange = $item->where('color_id', '8')->get();
-        $red = $item->where('color_id', '9')->get();
-        $red_violet = $item->where('color_id', '10')->get();
-        $violet = $item->where('color_id', '11')->get();
-        $blue_violet = $item->where('color_id', '12')->get();
-        $black = $item->where('color_id', '13')->get();
-        $gray = $item->where('color_id', '14')->get();
-        $white = $item->where('color_id', '15')->get();
+        $blue=null;
+        $blue_green=null;
+        $green=null;
+        $yellow_green=null;
+        $yellow=null;
+        $yellow_orange=null;
+        $orange=null;
+        $red_orange=null;
+        $red=null;
+        $red_violet=null;
+        $violet=null;
+        $blue_violet=null;
+        $black=null;
+        $gray=null;
+        $white=null;
+        
+        $colors = [$blue,
+                   $blue_green,
+                   $green,
+                   $yellow_green,
+                   $yellow,
+                   $yellow_orange,
+                   $orange,
+                   $red_orange,
+                   $red,
+                   $red_violet,
+                   $violet,
+                   $blue_violet,
+                   $black,
+                   $gray,
+                   $white];
+        
+        for ($i=0; $i<count($colors); $i++){
+            $colors[$i] = $item->where([
+                                ['user_id', '=', Auth::id()],
+                                ['color_id', '=', $i+1],
+                                ])->get();
+        };
         
         //categoryカテゴリに属するアイテム
-        $accessories = $item->where('category_id', '1')->get();
-        $tops = $item->where('category_id', '2')->get();
-        $botoms = $item->where('category_id', '3')->get();
-        $shoes = $item->where('category_id', '4')->get();
-        $bags_others = $item->where('category_id', '5')->get();
+        $accessories=null;
+        $tops=null;
+        $botoms=null;
+        $shoes=null;
+        $bags_others=null;
+        
+        $categories = [$accessories,
+                       $tops,
+                       $botoms,
+                       $shoes,
+                       $bags_others];
+                       
+        for ($i=0; $i<count($categories); $i++){
+            $categories[$i] = $item->where([
+                                     ['user_id', '=', Auth::id()],
+                                     ['category_id', '=', $i+1],
+                                     ])->get();
+        }
         
         $send_data = array();
         $tops_info = array();
@@ -123,15 +158,6 @@ class PatternsController extends Controller
                 $botoms_info["item_size_height"] = $patterns_id->botoms_size_height;
                 
                 array_push($send_data, $botoms_info);
-                // array_push($send_data, [$coordination_item->item_img,
-                //                         $patterns_id->botoms_id,
-                //                         $patterns_id->botoms_color_id,
-                //                         $patterns_id->botoms_locate_x,
-                //                         $patterns_id->botoms_locate_y,
-                //                         $patterns_id->botoms_size_width,
-                //                         $patterns_id->botoms_size_height
-                //                         ]);
-                // array_push($send_data, $botoms_info);
             }
             else if ($coordination_item->category_id==4){
                 $shoes_info["item_img"] = $coordination_item->item_img;
@@ -144,7 +170,6 @@ class PatternsController extends Controller
                 $shoes_info["item_size_height"] = $patterns_id->shoes_size_height;
                 
                 array_push($send_data, $shoes_info);
-                // array_push($send_data, $shoes_info);
             }
             else if (($coordination_item->category_id==1 || $coordination_item->category_id==5) && $others_count==2){
                 $others2_info["item_img"] = $coordination_item->item_img;
@@ -157,34 +182,31 @@ class PatternsController extends Controller
                 $others2_info["item_size_height"] = $patterns_id->others2_size_height;
                 
                 array_push($send_data, $others2_info);
-                // array_push($send_data, $others2_info);
             }
         }
         
-        // dd($coordination_items,$send_data);
-        
         return view('patterns.patterns_edit')->with(['items' => $items, 
                                                     'categories' => $category->get(),
-                                                    'blue' => $blue,
-                                                    'blue_green' => $blue_green,
-                                                    'green' => $green,
-                                                    'yellow_green' => $yellow_green,
-                                                    'yellow' => $yellow,
-                                                    'yellow_orange' => $yellow_orange,
-                                                    'orange' => $orange,
-                                                    'red_orange' => $red_orange,
-                                                    'red' => $red,
-                                                    'red_violet' => $red_violet,
-                                                    'violet' => $violet,
-                                                    'blue_violet' => $blue_violet,
-                                                    'black' => $black,
-                                                    'gray' => $gray,
-                                                    'white' => $white,
-                                                    'accessories' => $accessories,
-                                                    'tops' => $tops,
-                                                    'botoms' => $botoms,
-                                                    'shoes' => $shoes,
-                                                    'bags_others' => $bags_others,
+                                                    'blue' => $colors[0],
+                                                    'blue_green' => $colors[1],
+                                                    'green' => $colors[2],
+                                                    'yellow_green' => $colors[3],
+                                                    'yellow' => $colors[4],
+                                                    'yellow_orange' => $colors[5],
+                                                    'orange' => $colors[6],
+                                                    'red_orange' => $colors[7],
+                                                    'red' => $colors[8],
+                                                    'red_violet' => $colors[9],
+                                                    'violet' => $colors[10],
+                                                    'blue_violet' => $colors[11],
+                                                    'black' => $colors[12],
+                                                    'gray' => $colors[13],
+                                                    'white' => $colors[14],
+                                                    'accessories' => $categories[0],
+                                                    'tops' => $categories[1],
+                                                    'botoms' => $categories[2],
+                                                    'shoes' => $categories[3],
+                                                    'bags_others' => $categories[4],
                                                     'send_data' => $send_data
                                                     ]);
     }
@@ -242,6 +264,7 @@ class PatternsController extends Controller
             array_push($item_id, (int)($data[$key]["item_id"]));    
         }
         
+        $coordinations->user_id = Auth::id();
         $coordinations->save();
         $coordinations->items()->attach($item_id);
         return $coordinations;
@@ -250,54 +273,90 @@ class PatternsController extends Controller
     //パターンを作成するための画面を表示する
     public function add_pattern(Item $item, Category $category, Color $color)
     {
-        $items = $item->get();
+        $items = Auth::user()->items;
         
         //colorカテゴリに属するアイテム
-        $blue = $item->where('color_id', '1')->get();
-        $blue_green = $item->where('color_id', '2')->get();
-        $green = $item->where('color_id', '3')->get();
-        $yellow_green = $item->where('color_id', '4')->get();
-        $yellow = $item->where('color_id', '5')->get();
-        $yellow_orange = $item->where('color_id', '6')->get();
-        $orange = $item->where('color_id', '7')->get();
-        $red_orange = $item->where('color_id', '8')->get();
-        $red = $item->where('color_id', '9')->get();
-        $red_violet = $item->where('color_id', '10')->get();
-        $violet = $item->where('color_id', '11')->get();
-        $blue_violet = $item->where('color_id', '12')->get();
-        $black = $item->where('color_id', '13')->get();
-        $gray = $item->where('color_id', '14')->get();
-        $white = $item->where('color_id', '15')->get();
+        $blue=null;
+        $blue_green=null;
+        $green=null;
+        $yellow_green=null;
+        $yellow=null;
+        $yellow_orange=null;
+        $orange=null;
+        $red_orange=null;
+        $red=null;
+        $red_violet=null;
+        $violet=null;
+        $blue_violet=null;
+        $black=null;
+        $gray=null;
+        $white=null;
+        
+        $colors = [$blue,
+                   $blue_green,
+                   $green,
+                   $yellow_green,
+                   $yellow,
+                   $yellow_orange,
+                   $orange,
+                   $red_orange,
+                   $red,
+                   $red_violet,
+                   $violet,
+                   $blue_violet,
+                   $black,
+                   $gray,
+                   $white];
+        
+        for ($i=0; $i<count($colors); $i++){
+            $colors[$i] = $item->where([
+                                ['user_id', '=', Auth::id()],
+                                ['color_id', '=', $i+1],
+                                ])->get();
+        };
         
         //categoryカテゴリに属するアイテム
-        $accessories = $item->where('category_id', '1')->get();
-        $tops = $item->where('category_id', '2')->get();
-        $botoms = $item->where('category_id', '3')->get();
-        $shoes = $item->where('category_id', '4')->get();
-        $bags_others = $item->where('category_id', '5')->get();
+        $accessories=null;
+        $tops=null;
+        $botoms=null;
+        $shoes=null;
+        $bags_others=null;
+        
+        $categories = [$accessories,
+                       $tops,
+                       $botoms,
+                       $shoes,
+                       $bags_others];
+                       
+        for ($i=0; $i<count($categories); $i++){
+            $categories[$i] = $item->where([
+                                     ['user_id', '=', Auth::id()],
+                                     ['category_id', '=', $i+1],
+                                     ])->get();
+        }
         
         return view('patterns.patterns_add')->with(['items' => $items, 
                                                     'categories' => $category->get(),
-                                                    'blue' => $blue,
-                                                    'blue_green' => $blue_green,
-                                                    'green' => $green,
-                                                    'yellow_green' => $yellow_green,
-                                                    'yellow' => $yellow,
-                                                    'yellow_orange' => $yellow_orange,
-                                                    'orange' => $orange,
-                                                    'red_orange' => $red_orange,
-                                                    'red' => $red,
-                                                    'red_violet' => $red_violet,
-                                                    'violet' => $violet,
-                                                    'blue_violet' => $blue_violet,
-                                                    'black' => $black,
-                                                    'gray' => $gray,
-                                                    'white' => $white,
-                                                    'accessories' => $accessories,
-                                                    'tops' => $tops,
-                                                    'botoms' => $botoms,
-                                                    'shoes' => $shoes,
-                                                    'bags_others' => $bags_others
+                                                    'blue' => $colors[0],
+                                                    'blue_green' => $colors[1],
+                                                    'green' => $colors[2],
+                                                    'yellow_green' => $colors[3],
+                                                    'yellow' => $colors[4],
+                                                    'yellow_orange' => $colors[5],
+                                                    'orange' => $colors[6],
+                                                    'red_orange' => $colors[7],
+                                                    'red' => $colors[8],
+                                                    'red_violet' => $colors[9],
+                                                    'violet' => $colors[10],
+                                                    'blue_violet' => $colors[11],
+                                                    'black' => $colors[12],
+                                                    'gray' => $colors[13],
+                                                    'white' => $colors[14],
+                                                    'accessories' => $categories[0],
+                                                    'tops' => $categories[1],
+                                                    'botoms' => $categories[2],
+                                                    'shoes' => $categories[3],
+                                                    'bags_others' => $categories[4]
                                                     ]);
     }
     
