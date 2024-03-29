@@ -21,6 +21,9 @@
         </nav>
     </header>
     <body>
+        <div id="loading">
+            Loading...
+        </div>
         <div class="body">
             <div class="patterns_and_add">
                 <h2>ALL PATTERNS</h2>
@@ -90,9 +93,6 @@
                     @endforeach
                 </div>
             </div>
-        </div>
-        <div id="loading">
-            Loading...
         </div>
         <script>
             const loading = document.getElementById('loading');

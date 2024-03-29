@@ -20,6 +20,9 @@
         </nav>
     </header>
     <body>
+        <div id="loading">
+            Loading...
+        </div>
         <div class='categories'>
             <h2>CATEGORY</h2>
             @foreach($categories as $category)
@@ -104,9 +107,6 @@
                     </div>
                 @endforeach
             </div>    
-        </div>
-        <div id="loading">
-            Loading...
         </div>
         <script>
             function deleteItem(id) {

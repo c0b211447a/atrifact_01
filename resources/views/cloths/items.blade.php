@@ -21,7 +21,10 @@
         </nav>
     </header>
     <body class="body-layout">
-           <div class='categories'>
+        <div id="loading">
+            Loading...
+        </div>
+        <div class='categories'>
             <h2>CATEGORY</h2>
             @foreach($categories as $category)
                 <h3><a href="/cloths/categories/{{ $category->id }}">〇{{ $category->name }}</a></h3>
@@ -106,9 +109,6 @@
                     </div>
                 @endforeach
             </div>    
-        </div>
-        <div id="loading">
-            Loading...
         </div>
         <script>
             function deleteItem(id) {

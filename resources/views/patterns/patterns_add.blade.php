@@ -47,6 +47,9 @@
         </nav>
     </header>
     <body>
+        <div id="loading">
+            Loading...
+        </div>
         <div class="colors">
             <h2>ADD PATTERNS</h2>
             <svg viewBox="29.018 56.891 420.817 395.854" xmlns="http://www.w3.org/2000/svg" width="300" height="300">
@@ -138,9 +141,6 @@
                 </script>
             @endforeach
             <h3><a onclick="changeItems(all_items)">・ALL</a></h3>
-        </div>
-        <div id="loading">
-            Loading...
         </div>
         <!-- jsonをjson連想配列形式に変換している -->
         <script>
