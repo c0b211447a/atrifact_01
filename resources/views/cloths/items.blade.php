@@ -7,6 +7,8 @@
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
         <link href="/css/header.css" rel="stylesheet">
         <link href="/css/items_layout.css" rel="stylesheet">
+        <link href="/css/loading.css" rel="stylesheet">
+    
     </head>
     <header class="header_inline_block">
         <h1>Colorset</h1>
@@ -105,6 +107,9 @@
                 @endforeach
             </div>    
         </div>
+        <div id="loading">
+            Loading...
+        </div>
         <script>
             function deleteItem(id) {
                 console.log(document.getElementsByClassName("items")[0].scrollTop);
@@ -131,6 +136,12 @@
                     localStorage.removeItem('scrollPosition'); // 必要なら保存した位置をクリア
                 }
             });
+            
+            const loading = document.getElementById('loading');
+            
+            window.onload = function(){
+                loading.classList.add('loaded');
+            }
         </script>
     </body>
 </html>

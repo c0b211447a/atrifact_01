@@ -8,6 +8,7 @@
         <!-- css -->
         <link href="/css/header.css" rel="stylesheet">
         <link href="/css/all_patterns_layout.css" rel="stylesheet">
+        <link href="/css/loading.css" rel="stylesheet">
     </head>
     <header class="header_inline_block">
         <h1>Colorset</h1>
@@ -90,5 +91,15 @@
                 </div>
             </div>
         </div>
+        <div id="loading">
+            Loading...
+        </div>
+        <script>
+            const loading = document.getElementById('loading');
+            
+            window.onload = function(){
+                loading.classList.add('loaded');
+            }
+        </script>
     </body>
 </html>

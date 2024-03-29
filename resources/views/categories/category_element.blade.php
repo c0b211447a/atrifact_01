@@ -7,6 +7,7 @@
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
         <link href="/css/header.css" rel="stylesheet">
         <link href="/css/items_layout.css" rel="stylesheet">
+        <link href="/css/loading.css" rel="stylesheet">
     </head>
     <header class="header_inline_block">
         <h1>Colorset</h1>
@@ -104,6 +105,9 @@
                 @endforeach
             </div>    
         </div>
+        <div id="loading">
+            Loading...
+        </div>
         <script>
             function deleteItem(id) {
                 'use strict'
@@ -111,6 +115,12 @@
                 if (confirm('Really delete this item??')) {
                     document.getElementById(`form_${id}`).submit();
                 }
+            }
+            
+            const loading = document.getElementById('loading');
+            
+            window.onload = function(){
+                loading.classList.add('loaded');
             }
         </script>
     </body>

@@ -33,6 +33,7 @@
         <!-- css -->
         <link href="/css/header.css" rel="stylesheet">
         <link href="/css/add_patterns_layout.css" rel="stylesheet">
+        <link href="/css/loading.css" rel="stylesheet">
         <!-- js -->
         <script type="text/javascript" rel="script" src="{{asset('js/change_item_category.js')}}" charset="UTF-8"></script>
     </head>
@@ -235,6 +236,9 @@
             @endforeach
             <h3><a onclick="changeItems(all_items)">・ALL</a></h3>
         </div>
+        <div id="loading">
+            Loading...
+        </div>
         <!-- jsonをjson連想配列形式に変換している -->
         <script>
             const blue = JSON.parse('<?php echo $blue; ?>');
@@ -260,7 +264,11 @@
             const all_items = JSON.parse('<?php echo $all_items; ?>');
             const has_tops =  JSON.parse('<?php echo $sended_data; ?>');
 
+            const loading = document.getElementById('loading');
             
+            window.addEventListener("load", function(){
+                loading.classList.add('loaded');
+                });
         </script>
         <!-- js -->
         <script src="https://cdn.jsdelivr.net/npm/interactjs/dist/interact.min.js"></script>
