@@ -523,8 +523,6 @@ function save_coordinates(){
             })
             .catch(error => {
                 console.log(error);
-                console.log(JSON.stringify(data_pack));
-                
             })
             
             
