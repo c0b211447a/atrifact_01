@@ -79,7 +79,9 @@
                 @foreach($items as $item)
                     <div class="item_layout">
                         <div class="image">
-                            <img src="{{ $item->item_img }}" alt="画像が読み込めません。" width="200" height="200"/>
+                             <a class="hover_behavior" href="/cloths/patterns/item/{{ $item->id }}" style="width: 200px; height: 300px; display: inline-block; color: black">
+                                <img src="{{ $item->item_img }}" alt="画像が読み込めません。" width="200" height="200"/>    
+                            </a>
                         </div>
                         <div class='edit_layout'>
                             <form action="/cloths/items/{{ $item->id }}/edit" method="get">

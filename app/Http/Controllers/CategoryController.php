@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Category;
 use App\Models\Item;
 
@@ -41,8 +42,16 @@ class CategoryController extends Controller
     public function showCategories(Category $select_category)
     {
         $categories = Category::get();
+        $items = $select_category->getItems();
+        $user_id = Auth::user()->id;
+        $has_items = [];
+        foreach ($items as $item){
+            if ($item->user_id == $user_id){
+                array_push($has_items, $item);
+            }
+        }
         return view('categories.category_element')->with(['select_category' => $select_category, 
-                                                          'items' => $select_category->getItems(),
+                                                          'items' => $has_items,
                                                           'categories' => $categories]);
     }
 }
