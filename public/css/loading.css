@@ -7,11 +7,12 @@
     color: white;
     position: fixed;
     font-size: 1.5rem;
-    
+    z-index: 3;
 }
 
 #loading.loaded {
     opacity: 0;
     pointer-events: none;
+    z-index: auto;
 }
 
