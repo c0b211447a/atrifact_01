@@ -510,7 +510,7 @@ function save_coordinates(){
             data_pack["id"] = coordination_id;
             
             /* global fetch */
-            fetch("../update_patterns/",{
+            fetch("../update_patterns",{
                 method: "PUT",
                 headers: {'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content,
                     "Content-Type": "application/json"
