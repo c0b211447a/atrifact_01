@@ -28,7 +28,7 @@
             <div class="patterns_and_add">
                 <h2>ALL PATTERNS</h2>
                 <div class='add'>
-                    <h3><a href="patterns/add_patterns">ADD+</a></h3>
+                    <h3><a href="{{ route("add_pattern") }}">ADD+</a></h3>
                 </div>    
             </div>
             <div class='patterns'>

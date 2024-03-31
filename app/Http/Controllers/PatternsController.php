@@ -24,7 +24,14 @@ class PatternsController extends Controller
     //選択したアイテムが含まれているパターンの一覧を表示する
     public function showItemInPatterns(Item $item_id, Coordinations $coordinations){
         // dd($item_id->coordinations()->get());
-        return view('patterns.item_in_patterns')->with(['coordinations' => $item_id->coordinations]);
+        $user_has_coordinations = [];
+        $user_id = Auth::user()->id;
+        foreach ($item_id->coordinations as $coordination){
+            if ($coordination->user_id == $user_id){
+                array_push($user_has_coordinations, $coordination);
+            }
+        }
+        return view('patterns.item_in_patterns')->with(['coordinations' => $user_has_coordinations]);
     }
     
     public function delete_patterns(Coordinations $patterns_id){
