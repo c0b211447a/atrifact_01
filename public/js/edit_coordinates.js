@@ -395,6 +395,9 @@ function save_coordinates(){
     let save_item_id_list;
     let coordination_id;
     let exist_category_list = [];
+    let loading = document.getElementById('loading');
+    
+    loading.classList.remove("loaded");
     
     for (let i=0; i<target_item_children.length; i++){
         target_item_child = target_item_children[i];
