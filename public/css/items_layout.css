@@ -1,188 +1,576 @@
-.item_img {
+@media screen and (min-width: 1025px){
+    .item_img {
     display: flex;
     flex-wrap: wrap;
+    }
+    
+    body {
+        display: grid;
+        grid-template-rows: 100px 819px;
+        grid-template-columns: 578px 768px 578px;
+        grid-template-areas:
+            "areaHeader areaHeader areaHeader"
+            "areaCategories areaItems areaColors";
+        min-height: 920px;
+        min-width: 1920px;
+        overflow: hidden;
+    }
+    
+    .hover_behavior:hover {
+        cursor: pointer;
+        opacity: 0.5;
+    }
+    
+    
+    .header_inline_block {
+        grid-area: areaHeader;
+    }
+    
+    .categories {
+        background-color: lightgrey;
+        grid-area: areaCategories;
+        border-right: 1px solid;
+        border-top: 1px solid;
+    }
+    
+    .categories h2 {
+        margin-left: 10px;
+    }
+    
+    .categories h3 a {
+        text-decoration: none;
+        color: black;
+        margin-left: 10px
+    }
+    
+    .categories h3 a:hover {
+        cursor: pointer;
+        opacity: 0.5;
+    }
+    
+    .items {
+        background-color: lightgrey;
+        grid-area: areaItems;
+        border-top: 1px solid;
+        overflow: auto;
+    }
+    
+    .items_header {
+        display: flex;
+        align-items: center;
+    }
+    
+    .select_category_item {
+        display: inline-block;
+        margin: 10px;
+    }
+    
+    .add_item_button {
+        display: inline-block;
+        margin-left: auto;
+    }
+    
+    .add_item_button a {
+        text-decoration: none;
+        color: black;
+        margin-right: 10px;
+    }
+    
+    .add_item_button:hover {
+        cursor: pointer;
+        opacity: 0.5;
+    }
+    .colors {
+        background-color: lightgrey;
+        grid-area: areaColors;
+        border-left: 1px solid;
+        border-top: 1px solid;
+        position: relative;
+    }
+    
+    .colors h2 {
+        margin-left: 10px;
+    }
+    
+    .colors svg {
+        margin-left: 20px;
+    }
+    
+    .colors svg a:hover {
+        opacity: 0.5;
+    }
+    
+    #white {
+        position: absolute;
+        width: 200px;
+        height: 50px;
+        background-color: white;
+        transform: translate(350px, -260px);
+    }
+    
+    #gray{
+        position: absolute;
+        width: 200px;
+        height: 50px;
+        background-color: gray;
+        transform: translate(350px, -180px);
+    }
+    
+    #black {
+        position: absolute;
+        width: 200px;
+        height: 50px;
+        background-color: black;
+        transform: translate(350px, -100px);
+    }
+    
+    .item_layout {
+        display: grid;
+        grid-template-rows: 300px 50px;
+        grid-template-columns: 148px 26px 26px;
+        grid-template-areas:
+            "areaImg areaImg areaImg"
+            "areaSpace areaEdit areaDelete";
+        margin: 20px 0 0 40px;
+    }
+    
+    .imgae {
+        grid-area: areaImg;
+    }
+    
+    /*ウィンドウサイズが変わっても画像の比率を維持する*/
+    .image img {
+        width: 200px;
+        height: 300px;
+        border: 1px solid;
+    }
+    
+    .edit_layout {
+        grid-area: areaEdit;
+    }
+    
+    .edit_layout button {
+        margin-top: 3px;
+        padding: 0 0 0 0;
+        border: none;
+        background-color: transparent;
+    }
+    
+    .edit_layout button:hover {
+        cursor: pointer;
+        opacity: 0.5;
+    }
+    
+    .edit_patterns_button_img {
+        grid-area: areaEdit;
+        width: 26px;
+        height: 40px;
+    }
+    
+    .delete_layout {
+        grid-area: areaDelete;
+    }
+    
+    .delete_layout button {
+        margin-top: 3px;
+        padding: 0 0 0 0;
+        border: none;
+        background-color: transparent;
+    }
+    
+    .delete_layout button:hover {
+        cursor: pointer;
+        opacity: 0.5;
+    }
+    
+    .delete_patterns_button_img {
+        grid-area: areaDelete;
+        width: 26px;
+        height: 40px;
+    }
 }
 
-body {
-    display: grid;
-    grid-template-rows: 100px 819px;
-    grid-template-columns: 576px 768px 576px;
-    grid-template-areas:
-        "areaHeader areaHeader areaHeader"
-        "areaCategories areaItems areaColors";
-    overflow: hidden;
+@media screen and (orientation:landscape) and (max-width: 900px){
+    .item_img {
+        display: flex;
+        flex-wrap: wrap;
+    }
+    
+    html {
+        width: 100%;
+        height: 100%;
+    }
+    
+    body {
+        display: grid;
+        grid-template-rows: 11% 89%;
+        grid-template-columns: 30% 60% 30%;
+        grid-template-areas:
+            "areaHeader areaHeader areaHeader"
+            "areaCategories areaItems areaColors";
+        overflow: hidden;
+    }
+    
+    .hover_behavior:hover {
+        cursor: pointer;
+        opacity: 0.5;
+    }
+    
+    
+    .header_inline_block {
+        grid-area: areaHeader;
+    }
+    
+    .categories {
+        background-color: lightgrey;
+        grid-area: areaCategories;
+        border-right: 1px solid;
+        border-top: 1px solid;
+    }
+    
+    .categories h2 {
+        margin-left: 0.005%;
+    }
+    
+    .categories h3 a {
+        text-decoration: none;
+        color: black;
+        margin-left: 0.005%;
+    }
+    
+    .categories h3 a:hover {
+        cursor: pointer;
+        opacity: 0.5;
+    }
+    
+    .items {
+        background-color: lightgrey;
+        grid-area: areaItems;
+        border-top: 1px solid;
+        overflow: auto;
+    }
+    
+    .items_header {
+        display: flex;
+        align-items: center;
+    }
+    
+    .select_category_item {
+        display: inline-block;
+        margin: 0.005%;
+    }
+    
+    .add_item_button {
+        display: inline-block;
+        margin-left: auto;
+    }
+    
+    .add_item_button a {
+        text-decoration: none;
+        color: black;
+        margin-right: 0.005%;
+    }
+    
+    .add_item_button:hover {
+        cursor: pointer;
+        opacity: 0.5;
+    }
+    .colors {
+        background-color: lightgrey;
+        grid-area: areaColors;
+        border-left: 1px solid;
+        border-top: 1px solid;
+        position: relative;
+    }
+    
+    .colors h2 {
+        margin-left: 0.005%;
+    }
+    
+    .colors svg {
+        margin-left: 0.01%;
+    }
+    
+    .colors svg a:hover {
+        opacity: 0.5;
+    }
+    
+    #white {
+        position: absolute;
+        width: 200px;
+        height: 50px;
+        background-color: white;
+        transform: translate(350px, -260px);
+    }
+    
+    #gray{
+        position: absolute;
+        width: 200px;
+        height: 50px;
+        background-color: gray;
+        transform: translate(350px, -180px);
+    }
+    
+    #black {
+        position: absolute;
+        width: 200px;
+        height: 50px;
+        background-color: black;
+        transform: translate(350px, -100px);
+    }
+    
+    .item_layout {
+        display: grid;
+        grid-template-rows: 300px 50px;
+        grid-template-columns: 148px 26px 26px;
+        grid-template-areas:
+            "areaImg areaImg areaImg"
+            "areaSpace areaEdit areaDelete";
+        margin: 20px 0 0 40px;
+    }
+    
+    .imgae {
+        grid-area: areaImg;
+    }
+    
+    /*ウィンドウサイズが変わっても画像の比率を維持する*/
+    .image img {
+        width: 200px;
+        height: 300px;
+        border: 1px solid;
+    }
+    
+    .edit_layout {
+        grid-area: areaEdit;
+    }
+    
+    .edit_layout button {
+        margin-top: 3px;
+        padding: 0 0 0 0;
+        border: none;
+        background-color: transparent;
+    }
+    
+    .edit_layout button:hover {
+        cursor: pointer;
+        opacity: 0.5;
+    }
+    
+    .edit_patterns_button_img {
+        grid-area: areaEdit;
+        width: 26px;
+        height: 40px;
+    }
+    
+    .delete_layout {
+        grid-area: areaDelete;
+    }
+    
+    .delete_layout button {
+        margin-top: 3px;
+        padding: 0 0 0 0;
+        border: none;
+        background-color: transparent;
+    }
+    
+    .delete_layout button:hover {
+        cursor: pointer;
+        opacity: 0.5;
+    }
+    
+    .delete_patterns_button_img {
+        grid-area: areaDelete;
+        width: 26px;
+        height: 40px;
+    }
 }
+/*.item_img {*/
+/*    display: flex;*/
+/*    flex-wrap: wrap;*/
+/*}*/
 
-.hover_behavior:hover {
-    cursor: pointer;
-    opacity: 0.5;
-}
+/*body {*/
+/*    display: grid;*/
+/*    grid-template-rows: 100px 819px;*/
+/*    grid-template-columns: 578px 768px 578px;*/
+/*    grid-template-areas:*/
+/*        "areaHeader areaHeader areaHeader"*/
+/*        "areaCategories areaItems areaColors";*/
+/*    min-height: 920px;*/
+/*    min-width: 1920px;*/
+/*    overflow: hidden;*/
+/*}*/
+
+/*.hover_behavior:hover {*/
+/*    cursor: pointer;*/
+/*    opacity: 0.5;*/
+/*}*/
 
 
-.header_inline_block {
-    grid-area: areaHeader;
-}
+/*.header_inline_block {*/
+/*    grid-area: areaHeader;*/
+/*}*/
 
-.categories {
-    background-color: lightgrey;
-    grid-area: areaCategories;
-    border-right: 1px solid;
-    border-top: 1px solid;
-}
+/*.categories {*/
+/*    background-color: lightgrey;*/
+/*    grid-area: areaCategories;*/
+/*    border-right: 1px solid;*/
+/*    border-top: 1px solid;*/
+/*}*/
 
-.categories h2 {
-    margin-left: 10px;
-}
+/*.categories h2 {*/
+/*    margin-left: 10px;*/
+/*}*/
 
-.categories h3 a {
-    text-decoration: none;
-    color: black;
-    margin-left: 10px
-}
+/*.categories h3 a {*/
+/*    text-decoration: none;*/
+/*    color: black;*/
+/*    margin-left: 10px*/
+/*}*/
 
-.categories h3 a:hover {
-    cursor: pointer;
-    opacity: 0.5;
-}
+/*.categories h3 a:hover {*/
+/*    cursor: pointer;*/
+/*    opacity: 0.5;*/
+/*}*/
 
-.items {
-    background-color: lightgrey;
-    grid-area: areaItems;
-    border-top: 1px solid;
-    overflow: auto;
-}
+/*.items {*/
+/*    background-color: lightgrey;*/
+/*    grid-area: areaItems;*/
+/*    border-top: 1px solid;*/
+/*    overflow: auto;*/
+/*}*/
 
-.items_header {
-    display: flex;
-    align-items: center;
-}
+/*.items_header {*/
+/*    display: flex;*/
+/*    align-items: center;*/
+/*}*/
 
-.select_category_item {
-    display: inline-block;
-    margin: 10px;
-}
+/*.select_category_item {*/
+/*    display: inline-block;*/
+/*    margin: 10px;*/
+/*}*/
 
-.add_item_button {
-    display: inline-block;
-    margin-left: auto;
-}
+/*.add_item_button {*/
+/*    display: inline-block;*/
+/*    margin-left: auto;*/
+/*}*/
 
-.add_item_button a {
-    text-decoration: none;
-    color: black;
-    margin-right: 10px;
-}
+/*.add_item_button a {*/
+/*    text-decoration: none;*/
+/*    color: black;*/
+/*    margin-right: 10px;*/
+/*}*/
 
-.add_item_button:hover {
-    cursor: pointer;
-    opacity: 0.5;
-}
-.colors {
-    background-color: lightgrey;
-    grid-area: areaColors;
-    border-left: 1px solid;
-    border-top: 1px solid;
-    position: relative;
-}
+/*.add_item_button:hover {*/
+/*    cursor: pointer;*/
+/*    opacity: 0.5;*/
+/*}*/
+/*.colors {*/
+/*    background-color: lightgrey;*/
+/*    grid-area: areaColors;*/
+/*    border-left: 1px solid;*/
+/*    border-top: 1px solid;*/
+/*    position: relative;*/
+/*}*/
 
-.colors h2 {
-    margin-left: 10px;
-}
+/*.colors h2 {*/
+/*    margin-left: 10px;*/
+/*}*/
 
-.colors svg {
-    margin-left: 20px;
-}
+/*.colors svg {*/
+/*    margin-left: 20px;*/
+/*}*/
 
-.colors svg a:hover {
-    opacity: 0.5;
-}
+/*.colors svg a:hover {*/
+/*    opacity: 0.5;*/
+/*}*/
 
-#white {
-    position: absolute;
-    width: 200px;
-    height: 50px;
-    background-color: white;
-    transform: translate(350px, -260px);
-}
+/*#white {*/
+/*    position: absolute;*/
+/*    width: 200px;*/
+/*    height: 50px;*/
+/*    background-color: white;*/
+/*    transform: translate(350px, -260px);*/
+/*}*/
 
-#gray{
-    position: absolute;
-    width: 200px;
-    height: 50px;
-    background-color: gray;
-    transform: translate(350px, -180px);
-}
+/*#gray{*/
+/*    position: absolute;*/
+/*    width: 200px;*/
+/*    height: 50px;*/
+/*    background-color: gray;*/
+/*    transform: translate(350px, -180px);*/
+/*}*/
 
-#black {
-    position: absolute;
-    width: 200px;
-    height: 50px;
-    background-color: black;
-    transform: translate(350px, -100px);
-}
+/*#black {*/
+/*    position: absolute;*/
+/*    width: 200px;*/
+/*    height: 50px;*/
+/*    background-color: black;*/
+/*    transform: translate(350px, -100px);*/
+/*}*/
 
-.item_layout {
-    display: grid;
-    grid-template-rows: 300px 50px;
-    grid-template-columns: 148px 26px 26px;
-    grid-template-areas:
-        "areaImg areaImg areaImg"
-        "areaSpace areaEdit areaDelete";
-    margin: 20px 0 0 40px;
-}
+/*.item_layout {*/
+/*    display: grid;*/
+/*    grid-template-rows: 300px 50px;*/
+/*    grid-template-columns: 148px 26px 26px;*/
+/*    grid-template-areas:*/
+/*        "areaImg areaImg areaImg"*/
+/*        "areaSpace areaEdit areaDelete";*/
+/*    margin: 20px 0 0 40px;*/
+/*}*/
 
-.imgae {
-    grid-area: areaImg;
-}
+/*.imgae {*/
+/*    grid-area: areaImg;*/
+/*}*/
 
 /*ウィンドウサイズが変わっても画像の比率を維持する*/
-.image img {
-    width: 200px;
-    height: 300px;
-    border: 1px solid;
-}
+/*.image img {*/
+/*    width: 200px;*/
+/*    height: 300px;*/
+/*    border: 1px solid;*/
+/*}*/
 
-.edit_layout {
-    grid-area: areaEdit;
-}
+/*.edit_layout {*/
+/*    grid-area: areaEdit;*/
+/*}*/
 
-.edit_layout button {
-    margin-top: 3px;
-    padding: 0 0 0 0;
-    border: none;
-    background-color: transparent;
-}
+/*.edit_layout button {*/
+/*    margin-top: 3px;*/
+/*    padding: 0 0 0 0;*/
+/*    border: none;*/
+/*    background-color: transparent;*/
+/*}*/
 
-.edit_layout button:hover {
-    cursor: pointer;
-    opacity: 0.5;
-}
+/*.edit_layout button:hover {*/
+/*    cursor: pointer;*/
+/*    opacity: 0.5;*/
+/*}*/
 
-.edit_patterns_button_img {
-    grid-area: areaEdit;
-    width: 26px;
-    height: 40px;
-}
+/*.edit_patterns_button_img {*/
+/*    grid-area: areaEdit;*/
+/*    width: 26px;*/
+/*    height: 40px;*/
+/*}*/
 
-.delete_layout {
-    grid-area: areaDelete;
-}
+/*.delete_layout {*/
+/*    grid-area: areaDelete;*/
+/*}*/
 
-.delete_layout button {
-    margin-top: 3px;
-    padding: 0 0 0 0;
-    border: none;
-    background-color: transparent;
-}
+/*.delete_layout button {*/
+/*    margin-top: 3px;*/
+/*    padding: 0 0 0 0;*/
+/*    border: none;*/
+/*    background-color: transparent;*/
+/*}*/
 
-.delete_layout button:hover {
-    cursor: pointer;
-    opacity: 0.5;
-}
+/*.delete_layout button:hover {*/
+/*    cursor: pointer;*/
+/*    opacity: 0.5;*/
+/*}*/
 
-.delete_patterns_button_img {
-    grid-area: areaDelete;
-    width: 26px;
-    height: 40px;
-}
+/*.delete_patterns_button_img {*/
+/*    grid-area: areaDelete;*/
+/*    width: 26px;*/
+/*    height: 40px;*/
+/*}*/
 
