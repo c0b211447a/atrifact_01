@@ -365,8 +365,9 @@ function save_coordinates(){
     let sumbnail_data;
     let save_item_info;
     let save_item_id_list;
+    let loading = document.getElementById('loading');
     
-    
+    loading.classList.remove("loaded");
     for (let i=0; i<target_item_children.length; i++){
         target_item_child = target_item_children[i];
         target_item_id = target_item_child.id;

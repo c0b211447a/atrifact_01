@@ -176,6 +176,8 @@ save_button.addEventListener("click", function(){
         return;
     }
     let store = document.getElementById("store");
+    let loading = document.getElementById("loading");
+    loading.classList.remove("loaded");
     // store.click();
     // let formData = new FormData(document.getElementById("send_form"));
     for (var [key, value] of formData.entries()) {

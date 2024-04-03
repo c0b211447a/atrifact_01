@@ -8,6 +8,7 @@
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
         <link href="/css/header.css" rel="stylesheet">
         <link href="/css/add_items_layout.css" rel="stylesheet">
+        <link href="/css/loading.css" rel="stylesheet">
     </head>
     <header class="header_inline_block">
         <h1>Colorset</h1>
@@ -20,6 +21,9 @@
         </nav>
     </header>
     <body>
+        <div id="loading" class="loaded">
+            Loading...
+        </div>
         <form id="send_form" action="../items" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="add_item_image">
